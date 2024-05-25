@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: verdana;
+}
+
+body {
+    background: #ffffff;
+    color: white;
+}
+
+.containerLogin {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imagemLogin {
+    display: flex;
+    float: left;
+    border-right: 3px solid #66411f;
+
+}
+
+.imgLogin {
+    width: 620px;
+    height: 610px;
+}
+
+.formLogin .containerLogin h2 {
+    margin-top: 90px;
+    color: #66411f;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 45px;
+    margin-left: 140px;
+}
+
+.formLogin .containerLogin .loginP {
+    margin-top: 40px;
+    font-size: medium;
+    color: #66411f;
+}
+
+input {
+    width: 410px;
+    height: 40px;
+    border-radius: 15px;
+    background: transparent;
+    margin-top: 5px;
+    color: #000;
+    transition: 400ms;
+    border: 2px solid #663600;
+    padding: 10px;
+}
+
+input:hover {
+    border: 2px solid #66411f;
+    font-size: 15px;
+}
+
+button {
+    width: 250px;
+    border-radius: 15px;
+    margin-left: 70px;
+    margin-top: 30px;
+    height: 40px;
+    background: #66411f;;
+    color: #d4d4d4;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 400ms;
+    border: none;
+}
+
+button:hover {
+    background: #66411fc1;
+}
+
+a {
+    color: #66411f;
+    transition: 400ms;
+}
+
+a:hover {
+    color: rgb(255, 0, 0);
+
+}
+
+.pLogin {
+    margin-left: 90px;
+    color: #66411f;
+    margin-top: 50px;
+    font-size: 15px;
+}
+
+.esqueceuASenha {
+    margin-left: 72px;
+    color: #66411f;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.tituloLogin {
+    margin-left: 160px;
+    font-size: 190px;
+}
+
+.p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}

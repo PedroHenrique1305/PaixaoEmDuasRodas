@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/StyleQuest1.css">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Questionário 1</title>
+</head>
+
+<body>
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <span class="title" style="color: #ffffff; font-size: larger; text-align: center;padding-left: 112px;font-weight: bold">Paixão</span>
+            </li>
+            <li class="list">
+                <span class="title"
+                    style="color: #ffffff; font-size: large; text-align: center;padding-left: 117px;font-weight: bold">Sobre</span>
+            </li>
+            <li class="list">
+                <span class="title"
+                    style="color: #ffffff; font-size: medium; text-align: center;padding-left: 118px;font-weight: bold">Rodas</span>
+            </li>
+            <li>
+                <br>
+            </li>
+            <li>
+                <span class="title"
+                style="color: white; font-size: large; text-align: center;padding-left: 100px;font-weight: bold;">Olá,&nbsp;<span id="b_usuario">Usuário</span>!</span>
+            </li><br>
+            <li class="list">
+                <a href="/dashboard/dashboard.html">
+                    <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                    <span class="title">Recepção</span>
+                </a>
+            </li>          
+            <li class="list active">
+                <a href="../Quest1.html">
+                    <span class="icon"> <span class="material-symbols-outlined">fact_check</span></span>
+                    <span class="title">Questionário 1</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="../Quest2.html">
+                    <span class="icon"><span class="material-symbols-outlined">fact_check</span></span>
+                    <span class="title">Questionário 2</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="/dashboard/DashQuest.html">
+                    <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                    <span class="title">Dashboards</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="../index.html">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title"><button class="logout" onclick="limparSessao()"> Sair</button></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="Body">
+        <div class="form">
+            <h1>Desafio em duas rodas</h1>
+            <p>1- Qual é o aumento percentual da frota de motocicletas no Brasil nos últimos 10 anos?</p>
+            <p>&nbsp; a) 120% </p>
+            <p>&nbsp; b) 150% </p>
+            <p>&nbsp; c) 200% </p>
+            <p>&nbsp; d) 233% </p>
+            <p>&nbsp; e) 250% </p>
+            <br>
+            <select id="Q1">
+                <option value="#" selected disabled>Selecione uma alternativa</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <!-- **Resposta correta: d) 233%** -->
+            <br>
+            <p>2- O que motivou o crescimento significativo da frota de motocicletas no Brasil?</p>
+            <p>&nbsp; a) Avanços na tecnologia de fabricação de motocicletas. </p>
+            <p>&nbsp; b) Falência do transporte coletivo e caos urbano. </p>
+            <p>&nbsp; c) Aumento do poder aquisitivo da população. </p>
+            <p>&nbsp; d) Restrições de uso de carros particulares.</p>
+            <p>&nbsp; e) Facilidade de financiamento de motocicletas.</p>
+            <br>
+            <select id="Q2">
+                <option value="#" selected disabled>Selecione uma alternativa</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <!-- **Resposta correta: b) Falência do transporte coletivo e caos urbano** -->
+            <br>
+            <p>3- Quais foram os organizadores do Fórum Desafio em Duas Rodas mencionados no texto?</p>
+            <p>&nbsp; a) Escola Politécnica da Universidade de São Paulo (Poli-USP) e Associação Brasileira de Medicina
+                de Tráfego (Abramet).</p>
+            <p>&nbsp; b) Associação Brasileira de Medicina de Tráfego (Abramet) e revista “Duas Rodas”.</p>
+            <p>&nbsp; c) Escola Politécnica da Universidade de São Paulo (Poli-USP), Abraciclo e revista “Duas Rodas”.
+            </p>
+            <p>&nbsp; d) Abraciclo e Companhia de Engenharia de Tráfego (CET).</p>
+            <p>&nbsp; e) Escola Politécnica da Universidade de São Paulo (Poli-USP) e Companhia de Engenharia de Tráfego
+                (CET).</p>
+            <br>
+            <select id="Q3">
+                <option value="#" selected disabled>Selecione uma alternativa</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <!-- **Resposta correta: c) Escola Politécnica da Universidade de São Paulo (Poli-USP), Abraciclo e revista “Duas Rodas”** -->
+            <br>
+            <p>4- Qual é um dos assuntos prioritários discutidos no Fórum Desafio em Duas Rodas?</p>
+            <p>&nbsp; a) Desenvolvimento de equipamentos de proteção para motociclistas.</p>
+            <p>&nbsp; b) Aumento do preço da gasolina.</p>
+            <p>&nbsp; c) Desenvolvimento de carros elétricos.</p>
+            <p>&nbsp; d) Expansão do transporte público.</p>
+            <p>&nbsp; e) Criação de áreas exclusivas para motocicletas no trânsito.</p>
+            <br>
+            <select id="Q4">
+                <option value="#" selected disabled>Selecione uma alternativa</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <!-- **Resposta correta: a) Desenvolvimento de equipamentos de proteção para motociclistas** -->
+            <br>
+            <p>5- Qual foi o ponto elogiado no fórum mencionado no texto?</p>
+            <p>&nbsp; a) A presença de especialistas internacionais.</p>
+            <p>&nbsp; b) A discussão sobre carros autônomos.</p>
+            <p>&nbsp; c) A participação ativa do público nos debates.</p>
+            <p>&nbsp; d) A presença exclusiva de representantes do governo.</p>
+            <p>&nbsp; e) A inclusão do tema motocicleta em uma instituição de ensino renomada.</p>
+            <br>
+            <select id="Q5">
+                <option value="#" selected disabled>Selecione uma alternativa</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <!-- **Resposta correta: e) A inclusão do tema motocicleta em uma instituição de ensino renomada** -->
+            <br>
+            <button onclick="finalizar()">Finalizar Questionário</button>
+            <div id="resp" align="center"></div>
+            <br><br><br>
+        </div>
+
+    </div>
+
+    <script>
+    
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    
+    function finalizar() {
+        resp.innerHTML = "";
+        
+            var idUsuario = sessionStorage.ID_USUARIO;
+            
+            var respostas = [];
+            var SelQ1 = Q1.value;
+            var SelQ2 = Q2.value;
+            var SelQ3 = Q3.value;
+            var SelQ4 = Q4.value;
+            var SelQ5 = Q5.value; 
+            var cont = 0;
+
+            if (Q1.value == "#" || Q2.value == "#" || Q3.value == "#" || Q4.value == "#" || Q5.value == "#") {
+                alert("Responda corretamente todas as questões!")
+                SelQ1 = "";
+                SelQ2 = "";
+                SelQ3 = "";
+                SelQ4 = "";
+                SelQ5 = "";
+                resp.style.display = "none";
+            } else {
+                respostas.push(SelQ1);
+                respostas.push(SelQ2);
+                respostas.push(SelQ3);
+                respostas.push(SelQ4);
+                respostas.push(SelQ5);
+                resp.innerHTML = `Suas Respostas: <br>`
+                
+                var correta1Var = 'nao';
+                var correta2Var = 'nao';
+                var correta3Var = 'nao';
+                var correta4Var = 'nao';
+                var correta5Var = 'nao';
+
+                for (var index = 0; index < respostas.length; index++) {
+
+                    if (respostas[index] == "d" && index == 0) {
+                        resp.innerHTML += `<span style="Color:green">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                        cont++
+                        correta1Var = 'sim';
+                    } else if (respostas[index] == "b" && index == 1) {
+                        resp.innerHTML += `<span style="Color:green">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                        cont++
+                        correta2Var = 'sim';
+                    } else if (respostas[index] == "c" && index == 2) {
+                        resp.innerHTML += `<span style="Color:green">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                        cont++
+                        correta3Var = 'sim';
+                    } else if (respostas[index] == "a" && index == 3) {
+                        resp.innerHTML += `<span style="Color:green">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                        cont++
+                        correta4Var = 'sim';
+                    } else if (respostas[index] == "e" && index == 4) {
+                        resp.innerHTML += `<span style="Color:green">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                        cont++
+                        correta5Var = 'sim';
+                    } else {
+                        resp.innerHTML += `<span style="Color: red">${index + 1}° Questão = ${respostas[index]}<br></span>`
+                    }
+                    resp.style.display = "block";
+                }
+
+                if (cont < 1) {
+                    resp.innerHTML += `Você <span style="Color: red">não acertou nenhuma</span>`
+                } else {
+                    resp.innerHTML += `Você <span style="Color: green">acertou ${cont}</span> de 5`
+                }
+                Q1.value = "#";
+                Q2.value = "#";
+                Q3.value = "#";
+                Q4.value = "#";
+                Q5.value = "#";
+            }
+            console.log(respostas);
+
+            fetch("/questionario/cadastrarResposta", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    idUsuarioServer: idUsuario,
+                    correta1VarServer: correta1Var,
+                    correta2VarServer: correta2Var,
+                    correta3VarServer: correta3Var,
+                    correta4VarServer: correta4Var,
+                    correta5VarServer: correta5Var,
+                    quest1Server: SelQ1,
+                    quest2Server: SelQ2,
+                    quest3Server: SelQ3,
+                    quest4Server: SelQ4,
+                    quest5Server:SelQ5
+                }),
+            })
+                       
+        }
+
+    </script>

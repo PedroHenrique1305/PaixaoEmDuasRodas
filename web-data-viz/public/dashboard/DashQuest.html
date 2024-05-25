@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paixão sobre Rodas | Respostas Questionários</title>
+
+    <link rel="stylesheet" href="css/styleDash.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0" />
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--FONT AWESOME-->
+    <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+</head>
+
+<body onload="gerarGrafico(); gerarGrafico2(); gerarGrafico3();gerarGrafico4();">
+    <div class="navigation2">
+        <ul>
+            <li class="list">
+                <span class="title"
+                    style="color: #ffffff; font-size: larger; text-align: center;padding-left: 112px;font-weight: bold">Paixão</span>
+            </li>
+            <li class="list">
+                <span class="title"
+                    style="color: #ffffff; font-size: large; text-align: center;padding-left: 117px;font-weight: bold">Sobre</span>
+            </li>
+            <li class="list">
+                <span class="title"
+                    style="color: #ffffff; font-size: medium; text-align: center;padding-left: 118px;font-weight: bold">Rodas</span>
+            </li>
+            <li>
+                <br>
+            </li>
+            <li>
+                <span class="title"
+                    style="color: white; font-size: large; text-align: center;padding-left: 100px;font-weight: bold;">Olá,&nbsp;<span
+                        id="b_usuario">Usuário</span>!</span>
+            </li><br>
+            <li class="list">
+                <a href="dashboard.html">
+                    <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                    <span class="title">Recepção</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="../Quest1.html">
+                    <span class="icon"> <span class="material-symbols-outlined">fact_check</span></span>
+                    <span class="title">Questionário 1</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="../Quest2.html">
+                    <span class="icon"> <span class="material-symbols-outlined">fact_check</span></span>
+                    <span class="title">Questionário 2</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="DashQuest.html">
+                    <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                    <span class="title">Dashboards</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="../index.html">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title"><button class="logout" onclick="limparSessao()"> Sair</button></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="body">
+        <br><br><br>
+        <h1>Respostas Questionário 1</h1>
+        <div class="canva-container">
+            <canvas id="myChart1"></canvas>
+            
+            <canvas id="myChart3"></canvas>
+            
+        </div>
+        
+        <h1>Respostas Questionário 2</h1>
+        <div class="canva-container">
+            <canvas id="myChart2"></canvas>
+            
+            <canvas id="myChart4"></canvas>
+            
+        </div>
+        <button id="bottonDash"  onclick="iniciarAtualizacaoGrafico(),iniciarAtualizacaoGrafico2() ,iniciarAtualizacaoGrafico3() ,iniciarAtualizacaoGrafico4()  ">Atualizar Gráficos</button>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+        // Variáveis globais
+        var RespostasQ1 = [];
+        var RespostasQ2 = [];
+        var RespostasQ3 = [];
+        var RespostasQ4 = [];
+        var chart1 = null;
+        var chart2 = null;
+        var chart3 = null;
+        var chart4 = null;
+
+        // Função para gerar o primeiro gráfico
+        function gerarGrafico() {
+            fetch("/medidas/buscarUltimasMedidas", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO gerarGrafico!");
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json[0].total_respostas_certas1);
+                        RespostasQ1 = json[0].total_respostas_certas1;
+                        atualizarGrafico();
+                        console.log("Resposta do 1° gráfico: " + RespostasQ1);
+                    });
+                } else {
+                    console.log("Houve um erro ao capturar os dados do 1° gráfico!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+            return false;
+        }
+
+        // Função para gerar o segundo gráfico
+        function gerarGrafico2() {
+            fetch("/medidas/buscarUltimasMedidas2", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO gerarGrafico2!");
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json[0].total_respostas_certas2);
+                        RespostasQ2 = json[0].total_respostas_certas2;
+                        atualizarGrafico2();
+                        console.log("Resposta do 2° gráfico: " + RespostasQ2);
+                    });
+                } else {
+                    console.log("Houve um erro ao capturar os dados do 2° gráfico!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+            return false;
+        }
+
+        // Função para gerar o terceiro gráfico
+        function gerarGrafico3() {
+            fetch("/medidas/buscarUltimasMedidas3", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO gerarGrafico3!");
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json[0].total_respostas_erradas1);
+                        RespostasQ3 = json[0].total_respostas_erradas1;
+                        atualizarGrafico3();
+                        console.log("Resposta do 3° gráfico: " + RespostasQ3);
+                    });
+                } else {
+                    console.log("Houve um erro ao capturar os dados do 3° gráfico!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+            return false;
+        }
+
+        // Função para gerar o quarto gráfico
+        function gerarGrafico4() {
+            fetch("/medidas/buscarUltimasMedidas4", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO gerarGrafico4!");
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json[0].total_respostas_erradas2);
+                        RespostasQ4 = json[0].total_respostas_erradas2;
+                        atualizarGrafico4();
+                        console.log("Resposta do 4° gráfico: " + RespostasQ4);
+                    });
+                } else {
+                    console.log("Houve um erro ao capturar os dados do 4° gráfico!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+            return false;
+        }
+
+        // Função para iniciar a atualização do 1° gráfico
+        function iniciarAtualizacaoGrafico() {
+            gerarGrafico();
+            setInterval(gerarGrafico, 30000);
+        }
+
+        // Função para iniciar a atualização do 2° gráfico
+        function iniciarAtualizacaoGrafico2() {
+            gerarGrafico2();
+            setInterval(gerarGrafico2, 30000);
+        }
+
+        // Função para iniciar a atualização do 3° gráfico
+        function iniciarAtualizacaoGrafico3() {
+            gerarGrafico3();
+            setInterval(gerarGrafico3, 30000);
+        }
+
+        // Função para iniciar a atualização do 4° gráfico
+        function iniciarAtualizacaoGrafico4() {
+            gerarGrafico4();
+            setInterval(gerarGrafico4, 30000);
+        }
+
+        // Função para atualizar o 1° gráfico
+        function atualizarGrafico() {
+            console.log("Dados: " + RespostasQ1);
+
+            const labels = ['Certas'];
+            var dadosGrafico = [RespostasQ1];
+
+            if (chart1) {
+                chart1.destroy(); // Destruindo o gráfico se já existir um
+            }
+
+            const ctx = document.getElementById('myChart1').getContext('2d');
+            chart1 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Quantidade de respostas certas do Questionário 1',
+                        data: dadosGrafico,
+                        backgroundColor: ['rgb(102, 65, 31)'],
+                        borderColor: ['rgb(102, 65, 31)'],
+                        borderWidth: 0.5
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5
+                }
+            });
+        }
+
+        // Função para atualizar o 2° gráfico
+        function atualizarGrafico2() {
+            console.log("Dados: " + RespostasQ2);
+
+            const labels = ['Certas'];
+            var dadosGrafico2 = [RespostasQ2];
+
+            if (chart2) {
+                chart2.destroy(); // Destruindo o gráfico se já existir um
+            }
+
+            const ctx2 = document.getElementById('myChart2').getContext('2d');
+            chart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Quantidade de respostas certas do Questionário 2',
+                        data: dadosGrafico2,
+                        backgroundColor: ['rgb(102, 65, 31)'],
+                        borderColor: ['rgb(102, 65, 31)'],
+                        borderWidth: 0.5
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5
+                }
+            });
+        }
+
+        // Função para atualizar o 3° gráfico
+        function atualizarGrafico3() {
+            console.log("Dados: " + RespostasQ3);
+
+            const labels = ['Erradas'];
+            var dadosGrafico3 = [RespostasQ3];
+
+            if (chart3) {
+                chart3.destroy(); // Destruindo o gráfico se já existir um
+            }
+
+            const ctx3 = document.getElementById('myChart3').getContext('2d');
+            chart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Quantidade de respostas erradas do Questionário 1',
+                        data: dadosGrafico3,
+                        backgroundColor: ['rgb(102, 65, 31)'],
+                        borderColor: ['rgb(102, 65, 31)'],
+                        borderWidth: 0.5
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5
+                }
+            });
+        }
+
+        // Função para atualizar o 4° gráfico
+        function atualizarGrafico4() {
+            console.log("Dados: " + RespostasQ4);
+
+            const labels = ['Erradas'];
+            var dadosGrafico4 = [RespostasQ4];
+
+            if (chart4) {
+                chart4.destroy(); // Destruindo o gráfico se já existir um
+            }
+
+            const ctx4 = document.getElementById('myChart4').getContext('2d');
+            chart4 = new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Quantidade de respostas erradas do Questionário 2',
+                        data: dadosGrafico4,
+                        backgroundColor: ['rgb(102, 65, 31)'],
+                        borderColor: ['rgb(102, 65, 31)'],
+                        borderWidth: 0.5
+                    }]
+                },
+                options: {
+                    aspectRatio: 1.5
+                }
+            });
+        }
+    </script>
+</body>
+</html>

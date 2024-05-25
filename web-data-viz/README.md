@@ -15,11 +15,11 @@ _Implementação de Referência para o seu Projeto de Primeiro Semestre_
 - Siga as instruções no arquivo **/src/database/script-tabelas.sql**
 
 
-3. Acesse o arquivo **.env** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **AMBIENTE_PROCESSO=producao**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **AMBIENTE_PROCESSO=desenvolvimento**
+3. Acesse o arquivo **app.js** e parametrize o ambiente.
+- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **var ambiente_processo = 'producao';**
+- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **var ambiente_processo = 'desenvolvimento';**
 
-4. Adicione as credenciais de Banco de Dados no arquivo **.env**, seguindo as instruções neste.
+4. Adicione as credenciais de Banco de Dados no arquivo **.env** ou em **.end.dev**, seguindo as instruções neste.
 
 5. Acesse este repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
 
@@ -88,7 +88,9 @@ _* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
 
 Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
 
-![image](https://user-images.githubusercontent.com/46379117/201171649-e9d73663-b341-4035-83bd-885314c26ebb.png)
+
+![image](https://github.com/BandTec/web-data-viz/assets/46379117/e8d63551-6153-4632-93b9-f59a1d2afd3e)
+
 
 **Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
 - Primeiro, crie a tabela no Banco de Dados referente a este recurso. Exemplos de recursos comuns de serem adicionados ao projeto no primeiro semestre: Silo, Aquário, Sala, Andar, Endereço, Mercado, Prateleira, Unidade, Carro, Caminhão...  

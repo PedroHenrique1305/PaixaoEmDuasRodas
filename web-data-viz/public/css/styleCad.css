@@ -39,15 +39,18 @@ body{
 }
 
 .imagemcadastro{
+    margin: 0%;
+    width: 620px;
+    height: 607px;
     display: flex;
     float: right;
-    border-left: 3px solid #66411f;
+    border-left: 3px solid #523519;
 }
 
 .imgCadastro{
     margin: 0%;
-    width: 620px;
-    height: 610px;
+    width: 640px;
+    height: 607px;
 }
 
 .formCadastro .containercadastro h2{

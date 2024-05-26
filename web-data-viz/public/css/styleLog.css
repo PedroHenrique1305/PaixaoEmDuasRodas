@@ -33,13 +33,17 @@ body {
 .imagemLogin {
     display: flex;
     float: left;
-    border-right: 3px solid #66411f;
-
+    margin: 0%;
+    width: 620px;
+    height: 607px;
+    
 }
 
 .imgLogin {
-    width: 620px;
-    height: 610px;
+    border-right: 3px solid #523519;
+    margin: 0%;
+    width: 640px;
+    height: 607px;
 }
 
 .formLogin .containerLogin h2 {

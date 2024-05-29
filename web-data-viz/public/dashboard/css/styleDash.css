@@ -58,9 +58,8 @@
      top: 0px;
      height: 610px;
      background: #727272;
-     /* background: #24269b; */
      width: 75px;
-     box-shadow: 10px 0px 0px #66411f;
+     box-shadow: 10px 0px 0px rgb(102, 65, 31);
      border-left: 10px solid #727272;
      overflow-x: hidden;
      transition: 0.5s;

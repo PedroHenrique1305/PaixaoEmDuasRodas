@@ -91,17 +91,11 @@
         <h1>Respostas Questionário 1</h1>
         <div class="canva-container">
             <canvas id="myChart1"></canvas>
-            
-            <canvas id="myChart3"></canvas>
-            
         </div>
         
         <h1>Respostas Questionário 2</h1>
         <div class="canva-container">
-            <canvas id="myChart2"></canvas>
-            
-            <canvas id="myChart4"></canvas>
-            
+            <canvas id="myChart2"></canvas>            
         </div>
         <button id="bottonDash"  onclick="iniciarAtualizacaoGrafico(),iniciarAtualizacaoGrafico2() ,iniciarAtualizacaoGrafico3() ,iniciarAtualizacaoGrafico4()  ">Atualizar Gráficos</button>
     </div>
@@ -111,18 +105,14 @@
 
     <script>
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-        // Variáveis globais
-        var RespostasQ1 = [];
-        var RespostasQ2 = [];
-        var RespostasQ3 = [];
-        var RespostasQ4 = [];
+    
+        var RespostasQ1 = 0;
+        var RespostasQ2 = 0;
+        var RespostasQ3 = 0;
+        var RespostasQ4 = 0;
         var chart1 = null;
         var chart2 = null;
-        var chart3 = null;
-        var chart4 = null;
-
-        // Função para gerar o primeiro gráfico
+    
         function gerarGrafico() {
             fetch("/medidas/buscarUltimasMedidas", {
                 method: "GET",
@@ -130,17 +120,14 @@
                     "Content-Type": "application/json"
                 }
             }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO gerarGrafico!");
-
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        console.log(json[0].total_respostas_certas1);
-                        RespostasQ1 = json[0].total_respostas_certas1;
+                        RespostasQ1 = json[0].percentagem_respostas_certas1;
+                        RespostasQ3 = json[0].percentagem_respostas_erradas1;
                         atualizarGrafico();
-                        console.log("Resposta do 1° gráfico: " + RespostasQ1);
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do 1° gráfico!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q1!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });
@@ -148,11 +135,8 @@
             }).catch(function (erro) {
                 console.log(erro);
             });
-
-            return false;
         }
-
-        // Função para gerar o segundo gráfico
+    
         function gerarGrafico2() {
             fetch("/medidas/buscarUltimasMedidas2", {
                 method: "GET",
@@ -160,17 +144,13 @@
                     "Content-Type": "application/json"
                 }
             }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO gerarGrafico2!");
-
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        console.log(json[0].total_respostas_certas2);
-                        RespostasQ2 = json[0].total_respostas_certas2;
+                        RespostasQ2 = json[0].percentagem_respostas_certas2;
                         atualizarGrafico2();
-                        console.log("Resposta do 2° gráfico: " + RespostasQ2);
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do 2° gráfico!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q2!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });
@@ -178,11 +158,8 @@
             }).catch(function (erro) {
                 console.log(erro);
             });
-
-            return false;
         }
-
-        // Função para gerar o terceiro gráfico
+    
         function gerarGrafico3() {
             fetch("/medidas/buscarUltimasMedidas3", {
                 method: "GET",
@@ -190,17 +167,13 @@
                     "Content-Type": "application/json"
                 }
             }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO gerarGrafico3!");
-
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        console.log(json[0].total_respostas_erradas1);
-                        RespostasQ3 = json[0].total_respostas_erradas1;
-                        atualizarGrafico3();
-                        console.log("Resposta do 3° gráfico: " + RespostasQ3);
+                        RespostasQ3 = json[0].percentagem_respostas_erradas1;
+                        atualizarGrafico();
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do 3° gráfico!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q2!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });
@@ -208,11 +181,8 @@
             }).catch(function (erro) {
                 console.log(erro);
             });
-
-            return false;
         }
 
-        // Função para gerar o quarto gráfico
         function gerarGrafico4() {
             fetch("/medidas/buscarUltimasMedidas4", {
                 method: "GET",
@@ -220,17 +190,13 @@
                     "Content-Type": "application/json"
                 }
             }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO gerarGrafico4!");
-
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        console.log(json[0].total_respostas_erradas2);
-                        RespostasQ4 = json[0].total_respostas_erradas2;
-                        atualizarGrafico4();
-                        console.log("Resposta do 4° gráfico: " + RespostasQ4);
+                        RespostasQ4 = json[0].percentagem_respostas_erradas2;
+                        atualizarGrafico2();
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do 4° gráfico!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q2!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });
@@ -238,56 +204,46 @@
             }).catch(function (erro) {
                 console.log(erro);
             });
-
-            return false;
         }
-
-        // Função para iniciar a atualização do 1° gráfico
+    
         function iniciarAtualizacaoGrafico() {
             gerarGrafico();
             setInterval(gerarGrafico, 30000);
         }
-
-        // Função para iniciar a atualização do 2° gráfico
+    
         function iniciarAtualizacaoGrafico2() {
             gerarGrafico2();
             setInterval(gerarGrafico2, 30000);
         }
 
-        // Função para iniciar a atualização do 3° gráfico
+        
         function iniciarAtualizacaoGrafico3() {
             gerarGrafico3();
             setInterval(gerarGrafico3, 30000);
         }
 
-        // Função para iniciar a atualização do 4° gráfico
+        
         function iniciarAtualizacaoGrafico4() {
             gerarGrafico4();
             setInterval(gerarGrafico4, 30000);
         }
-
-        // Função para atualizar o 1° gráfico
+    
         function atualizarGrafico() {
-            console.log("Dados: " + RespostasQ1);
-
-            const labels = ['Certas'];
-            var dadosGrafico = [RespostasQ1];
-
             if (chart1) {
-                chart1.destroy(); // Destruindo o gráfico se já existir um
+                chart1.destroy();
             }
-
+    
             const ctx = document.getElementById('myChart1').getContext('2d');
             chart1 = new Chart(ctx, {
-                type: 'bar',
+                type: 'polarArea',
                 data: {
-                    labels: labels,
+                    labels: ['Respostas Corretas Q1', 'Respostas Erradas Q1'],
                     datasets: [{
-                        label: 'Quantidade de respostas certas do Questionário 1',
-                        data: dadosGrafico,
-                        backgroundColor: ['rgb(102, 65, 31)'],
-                        borderColor: ['rgb(102, 65, 31)'],
-                        borderWidth: 0.5
+                        label: 'Porcentagens de respostas do Questionário 1',
+                        data: [RespostasQ1, RespostasQ3],
+                        backgroundColor: ['rgb(48, 163, 20)', 'rgb(230, 0, 0)'],
+                        borderColor: ['rgb(102, 65, 31)', 'rgb(102, 65, 31)'],
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -295,89 +251,23 @@
                 }
             });
         }
-
-        // Função para atualizar o 2° gráfico
+    
         function atualizarGrafico2() {
-            console.log("Dados: " + RespostasQ2);
-
-            const labels = ['Certas'];
-            var dadosGrafico2 = [RespostasQ2];
-
             if (chart2) {
-                chart2.destroy(); // Destruindo o gráfico se já existir um
+                chart2.destroy();
             }
-
+    
             const ctx2 = document.getElementById('myChart2').getContext('2d');
             chart2 = new Chart(ctx2, {
-                type: 'bar',
+                type: 'polarArea',
                 data: {
-                    labels: labels,
+                    labels: ['Respostas Erradas Q2', 'Respostas Corretas Q2'],
                     datasets: [{
-                        label: 'Quantidade de respostas certas do Questionário 2',
-                        data: dadosGrafico2,
-                        backgroundColor: ['rgb(102, 65, 31)'],
-                        borderColor: ['rgb(102, 65, 31)'],
-                        borderWidth: 0.5
-                    }]
-                },
-                options: {
-                    aspectRatio: 1.5
-                }
-            });
-        }
-
-        // Função para atualizar o 3° gráfico
-        function atualizarGrafico3() {
-            console.log("Dados: " + RespostasQ3);
-
-            const labels = ['Erradas'];
-            var dadosGrafico3 = [RespostasQ3];
-
-            if (chart3) {
-                chart3.destroy(); // Destruindo o gráfico se já existir um
-            }
-
-            const ctx3 = document.getElementById('myChart3').getContext('2d');
-            chart3 = new Chart(ctx3, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Quantidade de respostas erradas do Questionário 1',
-                        data: dadosGrafico3,
-                        backgroundColor: ['rgb(102, 65, 31)'],
-                        borderColor: ['rgb(102, 65, 31)'],
-                        borderWidth: 0.5
-                    }]
-                },
-                options: {
-                    aspectRatio: 1.5
-                }
-            });
-        }
-
-        // Função para atualizar o 4° gráfico
-        function atualizarGrafico4() {
-            console.log("Dados: " + RespostasQ4);
-
-            const labels = ['Erradas'];
-            var dadosGrafico4 = [RespostasQ4];
-
-            if (chart4) {
-                chart4.destroy(); // Destruindo o gráfico se já existir um
-            }
-
-            const ctx4 = document.getElementById('myChart4').getContext('2d');
-            chart4 = new Chart(ctx4, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Quantidade de respostas erradas do Questionário 2',
-                        data: dadosGrafico4,
-                        backgroundColor: ['rgb(102, 65, 31)'],
-                        borderColor: ['rgb(102, 65, 31)'],
-                        borderWidth: 0.5
+                        label: 'Porcentagens de respostas do Questionário 2',
+                        data: [RespostasQ4,RespostasQ2],
+                        backgroundColor: ['rgb(230, 0, 0)', 'rgb(48, 163, 20)'],
+                        borderColor: ['rgb(102, 65, 31)', 'rgb(102, 65, 31)'],
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -386,5 +276,5 @@
             });
         }
     </script>
-</body>
+    </body>
 </html>

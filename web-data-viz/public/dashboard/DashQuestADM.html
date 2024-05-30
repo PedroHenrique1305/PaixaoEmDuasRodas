@@ -59,25 +59,13 @@
                         id="b_usuario">Usuário</span>!</span>
             </li><br>
             <li class="list">
-                <a href="dashboard.html">
+                <a href="dashboardADM.html">
                     <span class="icon"><span class="material-symbols-outlined">person</span></span>
                     <span class="title">Recepção</span>
                 </a>
             </li>
-            <li class="list">
-                <a href="../Quest1.html">
-                    <span class="icon"> <span class="material-symbols-outlined">fact_check</span></span>
-                    <span class="title">Questionário 1</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="../Quest2.html">
-                    <span class="icon"> <span class="material-symbols-outlined">fact_check</span></span>
-                    <span class="title">Questionário 2</span>
-                </a>
-            </li>
             <li class="list active">
-                <a href="DashQuest.html">
+                <a href="DashQuestADM.html">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span class="title">Dashboards</span>
                 </a>
@@ -111,19 +99,16 @@
 
     <script>
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-        var idUsuario = sessionStorage.ID_USUARIO;
+    
         var RespostasQ1 = 0;
         var RespostasQ2 = 0;
         var RespostasQ3 = 0;
         var RespostasQ4 = 0;
         var chart1 = null;
         var chart2 = null;
-
-        
     
         function gerarGrafico() {
-            
-            fetch(`/medidas/buscarUltimasMedidas/${idUsuario}`, {
+            fetch("/medidas/buscarUltimasMedidasADM", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -131,9 +116,7 @@
             }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        RespostasQ1 = json[0].percentagem_respostaUsuarios_certas1;
-
-                        console.log("Dados 1 do usuario: " + RespostasQ1);
+                        RespostasQ1 = json[0].percentagem_respostas_certas1;
                         atualizarGrafico();
                     });
                 } else {
@@ -148,7 +131,7 @@
         }
     
         function gerarGrafico2() {
-            fetch(`/medidas/buscarUltimasMedidas2/${idUsuario}`, {
+            fetch("/medidas/buscarUltimasMedidas2ADM", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -156,8 +139,7 @@
             }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        RespostasQ2 = json[0].percentagem_respostaUsuarios_certas2
-                        console.log("Dados 2 do usuario: " + RespostasQ2);
+                        RespostasQ2 = json[0].percentagem_respostas_certas2;
                         atualizarGrafico2();
                     });
                 } else {
@@ -172,7 +154,7 @@
         }
     
         function gerarGrafico3() {
-            fetch(`/medidas/buscarUltimasMedidas3/${idUsuario}`, {
+            fetch("/medidas/buscarUltimasMedidas3ADM", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -180,12 +162,11 @@
             }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        RespostasQ3 = json[0].percentagem_respostasUsuario_erradas1;
-                        console.log("Dados 3 do usuario: " + RespostasQ3);
+                        RespostasQ3 = json[0].percentagem_respostas_erradas1;
                         atualizarGrafico();
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do gráfico Q3!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q2!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });
@@ -196,7 +177,7 @@
         }
 
         function gerarGrafico4() {
-            fetch(`/medidas/buscarUltimasMedidas4/${idUsuario}`, {
+            fetch("/medidas/buscarUltimasMedidas4ADM", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -204,12 +185,11 @@
             }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        RespostasQ4 = json[0].percentagem_respostasUsuario_erradas2;
-                        console.log("Dados 4 do usuario: " + RespostasQ4);
+                        RespostasQ4 = json[0].percentagem_respostas_erradas2;
                         atualizarGrafico2();
                     });
                 } else {
-                    console.log("Houve um erro ao capturar os dados do gráfico Q4!");
+                    console.log("Houve um erro ao capturar os dados do gráfico Q2!");
                     resposta.text().then(texto => {
                         console.error(texto);
                     });

@@ -395,20 +395,22 @@ p{
 }
 
 .row1 a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
+    text-decoration: none;    
+    color: #66411f;
     transition: 400ms;
 }
 
 .row1 a:hover {
-    color: #66411f;
+    color: #000;
 }
 
 .row1 a i {
-    font-size: 2em;
+    font-size: 1.3em;
     margin: 0% 1%;
-    /* margin-left: 55px; */
+    padding-left: 20%;
+
 }
+
 #equipe{
     width: 100%;
     height: 550px;
@@ -433,7 +435,6 @@ p{
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    /* padding: 100px; */
 }
 
 #Sobremim{
@@ -484,6 +485,12 @@ height: 250px;
 }
 
 .funcaoEquipe{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
     font-size: 20px;
     color: #777777;
 }

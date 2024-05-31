@@ -131,7 +131,7 @@
             }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(json => {
-                        RespostasQ1 = json[0].percentagem_respostaUsuarios_certas1;
+                        RespostasQ1 = json[0].percentagem_respostasUsuario_certas1;
 
                         console.log("Dados 1 do usuario: " + RespostasQ1);
                         atualizarGrafico();

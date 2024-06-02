@@ -46,6 +46,9 @@ CREATE TABLE resposta(
     correta char(3)
 );
 
+select*from resposta;
+
+
 create table orcamento (
 idOrcamento int primary key auto_increment,
 KmOrcado int,
@@ -55,6 +58,7 @@ economia decimal(7,2)
 );
 
 select*from orcamento;
+
 
 SELECT LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1 AND fkUsuario = 14)) AS CHAR), 2) AS percentagem_respostas_certas1,
                    LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1 AND fkUsuario = 14)) AS CHAR), 2) AS percentagem_respostas_erradas1
@@ -94,5 +98,5 @@ select  resposta.resposta, questao.descricao,questao.pontos, usuario.nome
 
 select * from resposta join usuario on id = fkusuario;
 
-select * from usuario;
+select * from orcamento;
 show tables;

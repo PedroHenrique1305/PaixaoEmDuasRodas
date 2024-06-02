@@ -58,9 +58,9 @@
 
         if (emailVar == "" || senhaVar == "") {
             // cardErro.style.display = "block"
-            alert( "(Mensagem de erro para todos os campos em branco)");
-            emailUsuario.value="";
-            primeira_senha.value="";
+            alert("(Mensagem de erro para todos os campos em branco)");
+            emailUsuario.value = "";
+            primeira_senha.value = "";
             // finalizarAguardar();
             return false;
         }
@@ -94,10 +94,10 @@
                     sessionStorage.NOME_USUARIO = json[0].nome;
                     sessionStorage.ID_USUARIO = json[0].id;
 
-                    if(json[0].nome == 'ADM'){
+                    if (json[0].nome == 'ADM') {
                         window.location = "./dashboard/dashboardADM.html";
                     }
-                    else{
+                    else {
                         window.location = "./dashboard/dashboard.html";
                     }
 
@@ -119,6 +119,9 @@
         })
 
         return false;
+
+        emailUsuario.value = "";
+        primeira_senha.value = "";
     }
 
     function sumirMensagem() {

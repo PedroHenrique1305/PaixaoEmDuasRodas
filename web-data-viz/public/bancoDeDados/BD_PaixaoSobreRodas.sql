@@ -8,7 +8,7 @@ CREATE TABLE usuario (
 	email VARCHAR(256),
 	senha VARCHAR(20)
 );
-
+select*from usuario;
 insert into usuario values (1,'Pedro', 'pedro.cardoso@sptech.com', '12345');
 
 create table questao(
@@ -45,9 +45,22 @@ CREATE TABLE resposta(
     constraint fkRespostaQuestionario foreign key (fkQuestao) references questao(idQuestao),
     correta char(3)
 );
-drop table resposta;
 
-select*from resposta;
+create table orcamento (
+idOrcamento int primary key auto_increment,
+KmOrcado int,
+CustoCombustao decimal(7,2),
+CustoEletrico decimal(7,2),
+economia decimal(7,2)
+);
+
+select*from orcamento;
+
+SELECT LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1 AND fkUsuario = 14)) AS CHAR), 2) AS percentagem_respostas_certas1,
+                   LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1 AND fkUsuario = 14)) AS CHAR), 2) AS percentagem_respostas_erradas1
+            FROM resposta
+            WHERE fkQuestao = 1 AND fkUsuario = 14 AND correta = 'sim';
+        
 
 -- comando para saber as respostas certas e erradas de um questionario
 SELECT COUNT(*) AS total_respostas_certas1 FROM resposta where correta ='sim' and fkQuestao = 1;
@@ -65,6 +78,13 @@ SELECT COUNT(*) AS total_respostas FROM resposta where fkQuestao = 2 ;
 
 -- comando para pegar o total de respostas cadastradas na tabela de acordo com os dois questionarios
 SELECT COUNT(*) AS total_respostas FROM resposta;
+
+-- comando para pegar as respostas certas de apenas uma pessoa
+SELECT LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1)) AS CHAR), 2) AS percentagem_respostas_certas1 
+FROM resposta WHERE correta = 'sim' AND fkQuestao = 1 and fkUsuario = 1;
+
+SELECT LEFT(CAST((COUNT(*) * 100 / (SELECT COUNT(*) FROM resposta WHERE fkQuestao = 1 and fkUsuario = 14)) AS CHAR), 2) AS percentagem_respostas_certas1
+FROM resposta WHERE correta = 'sim' AND fkQuestao = 1 and fkUsuario = 14;
 
 
 select * from usuario join resposta on usuario.id= resposta.fkusuario join questao on idQuestao = fkQuestao;

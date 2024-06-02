@@ -12,4 +12,13 @@ router.post("/cadastrarResposta2", function (req, res) {
     questionarioController.cadastrarResposta2(req, res);
 })
 
+router.post("/cadastrarOrcamento", function (req, res) {
+    questionarioController.cadastrarOrcamento(req, res);
+})
+
+
+router.get("/buscarOrcamento", function (req, res) {
+    questionarioController.buscarOrcamento(req, res);
+})
+
 module.exports = router

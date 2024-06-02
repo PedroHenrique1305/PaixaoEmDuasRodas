@@ -23,7 +23,28 @@ function cadastrarResposta2(idUsuario, correta1, correta2, correta3, correta4, c
 }
 
 
+function cadastrarOrcamento(dis,custoCombustao,custoEletrico,economia) {
+   
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `insert into orcamento(KmOrcado,CustoCombustao, CustoEletrico,economia) values (${dis},${custoCombustao},${custoEletrico},${economia});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarOrcamento() {
+    console.log("ACESSEI O MEDIDA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n buscarUltimasMedidas(): ")
+    var instrucaoSql = `SELECT * FROM orcamento;`;
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     cadastrarResposta,
-    cadastrarResposta2
+    cadastrarResposta2,
+    cadastrarOrcamento,
+    buscarOrcamento
 };

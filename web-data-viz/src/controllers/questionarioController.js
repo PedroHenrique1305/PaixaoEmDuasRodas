@@ -127,7 +127,65 @@ function cadastrarResposta2(req, res) {
     }
 }
 
+function cadastrarOrcamento(req, res) {
+    var dis = req.body.disServer;
+    var custoCombustao = req.body.custoCombustaoServer; 
+    var custoEletrico = req.body.custoEletricoServer;
+    var economia = req.body.economiaServer;
+    
+    if (custoCombustao == undefined) {
+        res.status(400).send("Seu Resposta não foi definida")
+    }
+    else if (custoEletrico == undefined) {
+        res.status(400).send("Sua Resposta não foi definida")
+    }
+    else if (economia == undefined) {
+        res.status(400).send("Sua Resposta não foi definida")
+    }
+    else if (dis == undefined) {
+        res.status(400).send("Sua Resposta não foi definida")
+    }
+    else {
+
+        questionarioModel.cadastrarOrcamento(dis,custoCombustao,custoEletrico,economia)
+
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log("\nHouve um erro ao cadastrar suas respostas. Erro: ", erro.sqlMessage);
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+    }
+}
+
+
+function buscarOrcamento(req, res) {
+    questionarioModel.buscarOrcamento()
+        .then(resultadoAutenticar => {
+            console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
+
+            if (resultadoAutenticar.length > 0) {
+                res.status(200).json(resultadoAutenticar);
+            } else {
+                res.status(200).json([]);
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar o buscar orçamentos! Erro: ", erro.sqlMessage);
+            res.status(500).json({ error: "Houve um erro ao realizar o buscar orçamentos!", details: erro.sqlMessage });
+        });
+}
+
+
 module.exports = {
     cadastrarResposta,
-    cadastrarResposta2
+    cadastrarResposta2,
+    cadastrarOrcamento,
+    buscarOrcamento
 };

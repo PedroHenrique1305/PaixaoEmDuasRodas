@@ -1,0 +1,134 @@
+<script src="./js/sessao.js"></script>
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylecalc.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Paixão em duas Rodas | Calculadora</title>
+
+    <link rel="icon" href="../public/img/logo1.ico" type="image/x-icon" sizes="64x64">
+
+</head>
+
+<body>
+    <div class="menu">
+        <div id="imagem">
+            <img class="logo" src="img/logo.png" alt="">
+        </div>
+        <div class="borda">
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html">INICIO</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto1">DESAFIOS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#big">LAZER</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto3">PROBLEMAS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto4">ONU</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#contSobre">SOBRE NÓS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#equipe">DEV</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#rodape">CONTATO</a>
+            </li>
+        </div>
+        <a class="linkMenu1" href="cadastro.html">CADASTRAR</a>
+        <h1 class="barra"> | </h1>
+        <a class="linkMenu2" href="login.html">LOGIN</a>
+    </div>
+
+
+    <div id="form">
+        <h2>Calculo de Economia com Moto Elétrica</h2>
+        <label for="distancia">Digite a distância percorrida (km por mês):</label>
+        <input type="number" id="distancia" name="distancia" required>
+        <br><br>
+        <center>
+            <button onclick="calcularEconomia()">Calcular Economia</button>
+            <button onclick="apagarEconomia()">Limpar</button>
+        </center>
+    </div>
+    <center>
+        <div id="results" style="display: none;"></div>
+    </center>
+
+
+
+</body>
+
+</html>
+<script>
+
+    function apagarEconomia() {
+        results.style.display = 'none';
+        distancia.value = "";
+    }
+
+    function calcularEconomia() {
+        var dis = Number(distancia.value);
+        distancia.value = "";
+
+        if (dis != "" || dis > 0) {
+            // Preços fixos
+            var precoCombustivel = 5.50; // R$ por litro
+            var precoEletricidade = 0.85; // R$ por kWh
+
+            // Consumos estimados
+            var consumoCombustao = 35; // km/L
+            var consumoEletrico = 6; // kWh/100 km
+
+            var litrosConsumidos = dis / consumoCombustao;
+            var custoCombustao = litrosConsumidos * precoCombustivel;
+
+            var kWhConsumidos = (dis / 100) * consumoEletrico;
+            var custoEletrico = kWhConsumidos * precoEletricidade;
+
+            var economia = custoCombustao - custoEletrico;
+
+            custoCombustao = custoCombustao.toFixed(2);
+            custoEletrico = custoEletrico.toFixed(2);
+            economia = economia.toFixed(2)
+
+            results.style.display = 'block'
+            document.getElementById('results').innerHTML = `
+                    <h2>Resultados:</h2>
+                    <b><p>Custo mensal com a moto a combustão: R$ ${custoCombustao}</p>
+                    <p>Custo mensal com a moto elétrica: R$ ${custoEletrico}</p>
+                    <p>Economia mensal com a moto elétrica: R$ ${economia}</p></b>
+                `;
+
+            fetch("/questionario/cadastrarOrcamento", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    disServer: dis,
+                    custoCombustaoServer: custoCombustao,
+                    custoEletricoServer: custoEletrico,
+                    economiaServer: economia
+                }),
+            })
+
+        } else {
+            alert("Preencha corretamente o campo para realizar o Orçamento!")
+        }
+
+    }
+</script>

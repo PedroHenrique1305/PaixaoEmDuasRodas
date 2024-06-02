@@ -21,7 +21,7 @@ function buscarUltimasMedidas(req, res) {
                     } else {
                         res.status(403).send("já foram feitas selects ");
                     }
-                }
+                }   
             ).catch(
                 function (erro) {
                     console.log(erro);

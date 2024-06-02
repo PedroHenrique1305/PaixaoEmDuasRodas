@@ -8,7 +8,9 @@ CREATE TABLE usuario (
 	email VARCHAR(256),
 	senha VARCHAR(20)
 );
+
 select*from usuario;
+
 insert into usuario values (1,'Pedro', 'pedro.cardoso@sptech.com', '12345');
 
 create table questao(

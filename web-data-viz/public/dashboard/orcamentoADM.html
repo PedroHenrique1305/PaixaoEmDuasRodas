@@ -194,6 +194,7 @@ tfoot tr td {
     </div>
 
     <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO
         document.addEventListener('DOMContentLoaded', function() {
             fetch("/questionario/buscarOrcamento", {
                 method: "GET",

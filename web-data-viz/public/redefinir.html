@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paixão em duas Rodas | Redefinir Senha </title>
+
+    <link rel="icon" href="../img/logo1.ico" type="image/x-icon" sizes="64x64">
+
+    <script src="./js/sessao.js"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: verdana;
+        }
+
+        body {
+            background-image: url("https://momentomoto.com.br/wp-content/uploads/2018/01/momento-moto-dinno.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .containerRedefinir {
+            width: 80%;
+            height: 100%;
+            /* margin: auto; */
+            display: flex;
+            align-items: center;
+        }
+
+        .formRedefinir {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            height: 607px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #Redefinir {
+            background-color: #ffffffb2;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .formRedefinir .containerRedefinir h2 {
+            margin-top: 90px;
+            color: #66411f;
+            font-family: Verdana, Tahoma, sans-serif;
+            font-size: 33px;
+        }
+
+        .formRedefinir .containerRedefinir .RedefinirP {
+            margin-top: 40px;
+            font-size: medium;
+            color: #66411f;
+        }
+
+        input {
+            width: 410px;
+            height: 40px;
+            border-radius: 15px;
+            background: transparent;
+            margin-top: 5px;
+            color: #000;
+            transition: 400ms;
+            border: 2px solid #663600;
+            padding: 10px;
+        }
+
+        input:hover {
+            border: 2px solid #66411f;
+            font-size: 15px;
+        }
+
+        button {
+            width: 250px;
+            border-radius: 15px;
+            margin-left: 70px;
+            margin-top: 30px;
+            height: 40px;
+            background: #66411f;
+            color: #d4d4d4;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 400ms;
+            border: none;
+        }
+
+        button:hover {
+            background: #66411fc1;
+        }
+
+        .tituloRedefinir {
+            display: inline;
+        }
+
+        .p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        ::placeholder {
+            color: #66411f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="formRedefinir">
+        <div class="containerRedefinir">
+            <div id="Redefinir">
+                <h2 class="tituloRedefinir">Redefinição de Senha</h2>
+                <p class="RedefinirP">E-mail</p>
+                <input type="text" id="emailUsuario" required="@" placeholder="Informe seu e-mail"><br>
+                <p class="RedefinirP">Nova Senha:</p>
+                <input type="password" id="primeira_senha" placeholder="Nova Senha" required>
+                <p class="RedefinirP">Confirmar Senha:</p>
+                <input type="password" id="segunda_senha" placeholder="Confirme Nova Senha" required>
+                <button onclick="redefinir()">Redefinir Senha</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function redefinir() {
+        var emailVar = emailUsuario.value;
+        var senhaVar = primeira_senha.value;
+        var confirmacaoSenhaVar = segunda_senha.value;
+        var emailsemarroba = emailVar.indexOf("@");
+        var emailsemponto = emailVar.indexOf(".")
+
+        if (
+            emailVar == "" ||
+            senhaVar == "" ||
+            confirmacaoSenhaVar == ""
+        ) {
+            alert("Sem dados nos campos! \n necessário que você insira os dados nos campos corretamente");
+
+            return false;
+        } else if (emailsemarroba < 0) {
+            alert("Dados inseridos indevidamente, Insira novamente seu email com '@'");
+        }
+        else if (emailsemponto < 0) {
+            alert('Dados inseridos indevidamente, Insira novamente seu email com ".com"');
+        }
+        else if (senhaVar.length <= 6) {
+            alert("SENHA FRACA! \n Insira novamente Sua senha, com mais de 6 digitos");
+        }
+        else if (senhaVar != confirmacaoSenhaVar) {
+            alert("Senhas inseridas indevidamente, Insira novamente sua senha e sua confirmação");
+        }
+        else {
+
+            fetch("/usuarios/redefinir", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("Redefinição de senha realizada com sucesso! Redirecionando para tela de Login...");
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "1000");
+
+                        limparFormulario();
+                    } else {
+                        throw "Houve um erro ao tentar realizar a redefinição de senha!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+    }
+    
+</script>

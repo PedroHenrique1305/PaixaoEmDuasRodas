@@ -237,42 +237,9 @@ tfoot tr td {
                 console.error('Houve um erro ao capturar os dados do Orcamento!', error);
             });
         });
-//   document.addEventListener('DOMContentLoaded', function() {
-//             fetch("/questionario/buscarOrcamento", {
-//                 method: "GET",
-//                 headers: {
-//                     "Content-Type": "application/json"
-//                 }
-//             })
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error(`HTTP error! status: ${response.status}`);
-//                 }
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 const container = document.getElementById('orcamentos');
-//                 data.forEach(orcamento => {
-//                     const card = document.createElement('div');
-//                     card.className = 'card';
-//                     card.innerHTML = `
-//                         <h2>ID Orçamento: ${orcamento.idOrcamento}</h2>
-//                         <p>Quilometragem orçada: ${orcamento.KmOrcado} km</p>
-//                         <p>Custo Combustão: R$ ${orcamento.CustoCombustao}</p>
-//                         <p>Custo Elétrico: R$ ${orcamento.CustoEletrico}</p>
-//                         <p>Economia: R$ ${orcamento.economia}</p>
-//                     `;
-//                     container.appendChild(card);
-//                 });
-//             })
-//             .catch(error => {
-//                 console.error('Houve um erro ao capturar os dados do Orcamento!', error);
-//             });
-//         });
     
     </script>
         
-    </script>
 </body>
 
 </html>

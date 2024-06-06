@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Paixão em duas Rodas | Home</title>
     <link rel="icon" href="..\img\logo1.ico" type="image/x-icon" sizes="64x64">
@@ -205,9 +205,29 @@
         <br>
         <p style="color: #66411f; font-size: x-large;"> - Logo abaixo você pode comparar os custos de uma moto a Combustão e uma moto elétrica:</p>
         <a href="calculadora.html"><button>Comparação</button></a>
-        <div id="eletrica">
-            <img class="eletrica" src="img/eletrica.jpg" alt="">
-        </div>
+        <!-- <div id="eletrica"> -->
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="img/eletrica.jpg" alt="Voltz EV1 Sport">
+                        <div class="carousel-caption">Modelo - Voltz EV1 Sport <br> Preço inicial - R$15.890,00 <br>Potência do Motor - 3.000W <br> Velocidade máxima - 75 km/h</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/eletrica2.jpg" alt="Voltz EVS">
+                        <div class="carousel-caption">Modelo - Voltz EVS <br> Preço inicial - R$20.390,00 <br>Potência do Motor - 3.000W <br> Velocidade máxima - 120 km/h</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="img/eletrica3.jpg" alt="GWS K14RS">
+                        <div class="carousel-caption">Modelo - GWS K14RS <br> Preço inicial - R$130.000,00 <br>Potência do Motor - 14.000W <br> Velocidade máxima -  170 km/h</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://image.made-in-china.com/44f3j00DBkYatMCsNUG/China-Cheap-Price-Electric-Motorcycle-with-Pedals-CKD-Electric-Scooper-1200W-1500W-for-Adult.webp" alt="Foto 4">
+                        <div class="carousel-caption">Modelo - Voltz EVS <br> Preço inicial - R$20.390,00 <br>Potência do Motor - 3.000W <br> Velocidade máxima - 120 km/h</div>
+                    </div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
     </div>
     
     <div id="contSobre">
@@ -277,3 +297,24 @@
 </body>
 
 </html>
+
+<script>
+    let currentSlide = 0;
+
+function moveSlide(n) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    currentSlide += n;
+
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+
+    const carousel = document.querySelector('.carousel');
+    carousel.style.transform = 'translateX(' + (-610 * currentSlide) + 'px)';
+}
+
+</script>

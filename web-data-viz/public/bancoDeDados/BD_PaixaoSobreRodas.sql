@@ -1,4 +1,4 @@
-CREATE DATABASE paixao;
+CREATE DATABASE paixao;	
 
 USE paixao;
 
@@ -11,7 +11,9 @@ CREATE TABLE usuario (
 
 select*from usuario;
 
-insert into usuario values (1,'Pedro', 'pedro.cardoso@sptech.com', '12345');
+insert into usuario values 
+(1,'ADM', 'ADM@ADM.com', '123456789'),
+(2,'Pedro', 'pedro.cardoso@sptech.com', '13151805');
 
 create table questao(
 idQuestao int primary key auto_increment,
@@ -101,4 +103,5 @@ select  resposta.resposta, questao.descricao,questao.pontos, usuario.nome
 select * from resposta join usuario on id = fkusuario;
 
 select * from orcamento;
+
 show tables;

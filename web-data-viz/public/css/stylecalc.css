@@ -4,7 +4,8 @@
     font-family: "Mukta", sans-serif;
 }
 
-h2,h3{
+h2,
+h3 {
     color: #66411f;
 }
 
@@ -23,8 +24,8 @@ label {
 }
 
 input {
-    padding: 8px;
-    width: 100%;
+    padding: 5px;
+    width: 60%;
     box-sizing: border-box;
 }
 
@@ -33,6 +34,7 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 30px;
     width: 600px;
     height: 500px;
@@ -40,6 +42,7 @@ input {
 
     border: 3px solid #66411f;
 }
+
 #results {
     padding: 40px;
     width: 400px;
@@ -55,16 +58,17 @@ input {
 
 button {
     padding: 10px 15px;
-    background-color: #4CAF50;
+    background-color: #66411f;
     border-radius: 20px;
-    border-color: #4CAF50;
+    border-color: #462d16;
     color: white;
-    /* border: none; */
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #2b642d;
+    background-color: #ffffffdc;
+    font-weight: bold;
+    color: #66411f;
 }
 
 .menu {

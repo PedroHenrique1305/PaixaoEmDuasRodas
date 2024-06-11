@@ -55,17 +55,18 @@
 
 
     <div id="form">
-        <h3> <center>
-            Logo abaixo você pode comparar os custos de uma moto a Combustão e uma moto elétrica.
-        </center>
-        <br>
-            Baseado em seus gastos e Autonomia com sua motocicleta a combustão. <br>
-            Os valores são Pré-Definidos por pesquisas feitas sobre a energia do Estado de São Paulo. <br><br>
+        <h3>
+            <center>
+                Logo abaixo você pode comparar os custos de uma moto a Combustão e uma moto elétrica.
+                Baseado em seus gastos e Autonomia com sua motocicleta a combustão. <br>
+                Os valores são Pré-Definidos por pesquisas feitas sobre a energia do Estado de São Paulo. <br><br>
 
-            Calculo de Economia com Moto Elétrica: </h3>
+                Calculo de Economia com Moto Elétrica:
+        </h3>
+        </center>
         <label for="distancia">Digite a distância percorrida (km por mês):</label>
         <input type="number" id="distancia" name="distancia" required>
-        
+
         <label for="distancia">Digite o valor do combustível (Por Litro):</label>
         <input type="number" id="Valor" name="Valor" required>
 
@@ -97,16 +98,16 @@
 
     function calcularEconomia() {
         var dis = Number(distancia.value);
-        var precoCombustivel = Number(Valor.value); 
+        var precoCombustivel = Number(Valor.value);
         var consumoCombustao = Number(Consumo.value);
-        
+
         distancia.value = "";
         Valor.value = "";
         Consumo.value = "";
-        
-        if (dis != "" || dis > 0 || precoCombustivel != "" || precoCombustivel > 0 || consumoCombustao != "" || consumoCombustao > 0){
-            var precoEletricidade = 0.85; 
-            var consumoEletrico = 6; 
+
+        if (dis != "" || dis > 0 || precoCombustivel != "" || precoCombustivel > 0 || consumoCombustao != "" || consumoCombustao > 0) {
+            var precoEletricidade = 0.85;
+            var consumoEletrico = 6;
 
             var litrosConsumidos = dis / consumoCombustao;
             var custoCombustao = litrosConsumidos * precoCombustivel;

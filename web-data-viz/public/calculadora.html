@@ -42,7 +42,7 @@
                 <a class="linkMenu" href="index.html#contSobre">SOBRE NÓS</a>
             </li>
             <li class="menuItem">
-                <a class="linkMenu" href="index.html#equipe">DEV</a>
+                <a class="linkMenu" href="#form">COMPARE</a>
             </li>
             <li class="menuItem">
                 <a class="linkMenu" href="index.html#rodape">CONTATO</a>
@@ -55,10 +55,23 @@
 
 
     <div id="form">
-        <h2>Calculo de Economia com Moto Elétrica</h2>
+        <h3> <center>
+            Logo abaixo você pode comparar os custos de uma moto a Combustão e uma moto elétrica.
+        </center>
+        <br>
+            Baseado em seus gastos e Autonomia com sua motocicleta a combustão. <br>
+            Os valores são Pré-Definidos por pesquisas feitas sobre a energia do Estado de São Paulo. <br><br>
+
+            Calculo de Economia com Moto Elétrica: </h3>
         <label for="distancia">Digite a distância percorrida (km por mês):</label>
         <input type="number" id="distancia" name="distancia" required>
-        <br><br>
+        
+        <label for="distancia">Digite o valor do combustível (Por Litro):</label>
+        <input type="number" id="Valor" name="Valor" required>
+
+        <label for="distancia">Digite o Consumo da sua motocicleta (km/Litro):</label>
+        <input type="number" id="Consumo" name="Consumo" required>
+        <br>
         <center>
             <button onclick="calcularEconomia()">Calcular Economia</button>
             <button onclick="apagarEconomia()">Limpar</button>
@@ -78,20 +91,22 @@
     function apagarEconomia() {
         results.style.display = 'none';
         distancia.value = "";
+        Valor.value = "";
+        Consumo.value = "";
     }
 
     function calcularEconomia() {
         var dis = Number(distancia.value);
+        var precoCombustivel = Number(Valor.value); 
+        var consumoCombustao = Number(Consumo.value);
+        
         distancia.value = "";
-
-        if (dis != "" || dis > 0) {
-            // Preços fixos
-            var precoCombustivel = 5.50; // R$ por litro
-            var precoEletricidade = 0.85; // R$ por kWh
-
-            // Consumos estimados
-            var consumoCombustao = 35; // km/L
-            var consumoEletrico = 6; // kWh/100 km
+        Valor.value = "";
+        Consumo.value = "";
+        
+        if (dis != "" || dis > 0 || precoCombustivel != "" || precoCombustivel > 0 || consumoCombustao != "" || consumoCombustao > 0){
+            var precoEletricidade = 0.85; 
+            var consumoEletrico = 6; 
 
             var litrosConsumidos = dis / consumoCombustao;
             var custoCombustao = litrosConsumidos * precoCombustivel;

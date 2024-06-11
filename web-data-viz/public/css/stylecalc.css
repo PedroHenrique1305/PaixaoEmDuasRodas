@@ -4,7 +4,7 @@
     font-family: "Mukta", sans-serif;
 }
 
-h2{
+h2,h3{
     color: #66411f;
 }
 
@@ -29,13 +29,13 @@ input {
 }
 
 #form {
-    margin: 50px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px;
-    width: 500px;
-    height: 280px;
+    padding: 30px;
+    width: 600px;
+    height: 500px;
     border-radius: 50px;
 
     border: 3px solid #66411f;

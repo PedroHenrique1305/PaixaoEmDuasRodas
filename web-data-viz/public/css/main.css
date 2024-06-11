@@ -573,9 +573,79 @@ height: 250px;
 .prev:hover, .next:hover {
     background-color: rgba(129, 129, 129, 0.8);
 }
+
 .carousel-caption{
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+}
+
+.contact-card {
+    background-color: rgb(207, 207, 207);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px #66411f;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    margin: 20px;
+}
+
+#contato{
+ padding-top: 60px;
+ display: flex;
+ justify-content: center;
+}
+
+.contact-card h2 {
+    margin-top: 0;
+    color: #66411f;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+#contact{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-card label {
+    margin: 15px 0 5px;
+    color: #66411f;
+    font-weight: bold;
+}
+
+.contact-card input,
+.contact-card textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+    outline: none;
+    border-color: #66411f;
+    box-shadow: 0 0 5px rgba(102, 65, 31,0.5);
+}
+
+.contact-card button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #66411f;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.contact-card button:hover {
+    background-color: #ffffffe0;
+    color: #66411f;
 }

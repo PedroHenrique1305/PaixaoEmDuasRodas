@@ -100,8 +100,61 @@ function redefinir(req, res) {
     }
 }
 
+function enviarMensagem(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var Mensagem = req.body.menssagemServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    }else if (email == undefined) {
+        res.status(400).send("Seu Email está undefined!");
+    }else if (Mensagem == undefined) {
+        res.status(400).send("Sua menssagem está undefined!");
+    } else {
+
+        usuarioModel.enviarMensagem(nome, email, Mensagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a redefinição! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+function buscarMensagens(req, res) {
+    usuarioModel.buscarMensagens()
+        .then(resultadoAutenticar => {
+            console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
+
+            if (resultadoAutenticar.length > 0) {
+                res.status(200).json(resultadoAutenticar);
+            } else {
+                res.status(200).json([]);
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar o buscar orçamentos! Erro: ", erro.sqlMessage);
+            res.status(500).json({ error: "Houve um erro ao realizar o buscar orçamentos!", details: erro.sqlMessage });
+        });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    redefinir
+    redefinir,
+    enviarMensagem,
+    buscarMensagens
 }

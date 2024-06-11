@@ -16,6 +16,13 @@ router.post("/redefinir", function (req, res) {
     usuarioController.redefinir(req, res);
 });
 
+router.post("/enviarMensagem", function (req, res) {
+    usuarioController.enviarMensagem(req, res);
+});
+
+router.get("/buscarMensagens", function (req, res) {
+    usuarioController.buscarMensagens(req, res);
+})
 
 
 module.exports = router;

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paixão em duas Rodas | Orçamentos</title>
-    
+    <title>Paixão em duas Rodas | Mensagens</title>
+
     <link rel="icon" href="../img/logo1.ico" type="image/x-icon" sizes="64x64">
-    
+
     <link rel="stylesheet" href="css/styleDash.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -26,93 +26,61 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
     <style>
-        #body{
-            color: black;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            color: #727272;
-        }
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    display: flex;
+}
 
-        .card {
-            color: #727272;
-            border: 1px solid #727272;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 8px;
-            width: auto;
-            /* width: calc(33.333% - 32px); */
-            box-sizing: border-box;
-        }
-
-        .card h2 {
-            margin-top: 0;
-            color: #727272;
-        }
-
-        #body {
-            margin-top: 50px;
-} 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
 
 h1 {
     color: #66411f;
     margin-bottom: 40px;
 }
 
-table {
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
-    padding: 12px 15px;
-    border: 1px solid #9e9d9d;
-    text-align: left;
+.card {
+    background: linear-gradient(to bottom,#ad5c15,#66411f,#201811);
+    border-radius: 10px;
+    box-shadow: 20px 20px 20px rgb(126, 126, 126);
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    margin: 20px;
 }
 
-th {
-    background-color: #66411ff3;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
+.card h3 {
+    color: white;
+    margin-top: 0;
 }
 
-tr {
-    transition: background-color 0.2s ease;
+.card p {
+    margin: 8px 0;
+    color: rgb(228, 228, 228);
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-tfoot {
-    background-color: #f4f4f4;
-    text-align: right;
-}
-
-tfoot tr td {
-    font-weight: bold;
+strong {
+    color: white;
 }
 
 @media (max-width: 768px) {
-    table {
-        width: 100%;
-    }
-
-    th, td {
-        padding: 10px 8px;
+    .card {
+        width: 90%;
     }
 }
 
@@ -153,18 +121,18 @@ tfoot tr td {
                     <span class="title">Recepção</span>
                 </a>
             </li>
-            <li class="list active">
+            <li class="list">
                 <a href="orcamentoADM.html">
                     <span class="icon"><span class="material-symbols-outlined">checkbook</span></span>
                     <span class="title">Orçamentos</span>
                 </a>
             </li>
-            <li class="list">
+            <li class="list active">
                 <a href="mensagensADM.html">
                     <span class="icon"><ion-icon name="paper-plane"></ion-icon></span>
                     <span class="title">Mensagens</span>
                 </a>
-            </li> 
+            </li>
             <li class="list">
                 <a href="DashQuestADM.html">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
@@ -183,69 +151,55 @@ tfoot tr td {
         </div>
     </div>
     <div id="body" align="center">
-        <h1>Orçamentos</h1>
-        <table id="orcamentos-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Quilometragem orçada (km)</th>
-                    <th>Custo Combustão (R$)</th>
-                    <th>Custo Elétrico (R$)</th>
-                    <th>Economia (R$)</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="container">
+            <h1>Mensagens</h1>
+            <div class="cards-container" id="cards-container">
+            </div>
         </div>
     </div>
 
     <script>
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch("/questionario/buscarOrcamento", {
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch("/usuarios/buscarMensagens", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const tbody = document.querySelector('#orcamentos-table tbody');
-                tbody.innerHTML = ''; // Clear previous content
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const container = document.getElementById('cards-container');
+                    container.innerHTML = '';
 
-                if (data.length === 0) {
-                    const row = document.createElement('tr');
-                    const cell = document.createElement('td');
-                    cell.colSpan = 5;
-                    cell.textContent = 'Nenhum orçamento encontrado.';
-                    row.appendChild(cell);
-                    tbody.appendChild(row);
-                } else {
-                    data.forEach(orcamento => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${orcamento.idOrcamento}</td>
-                            <td>${orcamento.KmOrcado} km</td>
-                            <td>R$ ${orcamento.CustoCombustao}</td>
-                            <td>R$ ${orcamento.CustoEletrico}</td>
-                            <td>R$ ${orcamento.economia}</td>
+                    if (data.length === 0) {
+                        const message = document.createElement('p');
+                        message.textContent = 'Nenhuma mensagem encontrada.';
+                        container.appendChild(message);
+                    } else {
+                        data.forEach(mensagem => {
+                            const card = document.createElement('div');
+                            card.classList.add('card');
+                            card.innerHTML = `
+                            <h3>ID Mensagem:&nbsp;&nbsp;${mensagem.idMensagem}</h3>
+                            <p><strong>Nome:</strong>&nbsp;${mensagem.nome}</p>
+                            <p><strong>Email:</strong>&nbsp;&nbsp;${mensagem.email}</p>
+                            <p><strong>Mensagem:</strong><br>${mensagem.mensagem}</p>
                         `;
-                        tbody.appendChild(row);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Houve um erro ao capturar os dados do Orcamento!', error);
-            });
+                            container.appendChild(card);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Houve um erro ao capturar os dados das mensagem!', error);
+                });
         });
-    
     </script>
-        
 </body>
 
 </html>

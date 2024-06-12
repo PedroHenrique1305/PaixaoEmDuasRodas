@@ -595,6 +595,7 @@ height: 250px;
  padding-top: 60px;
  display: flex;
  justify-content: center;
+ background-color: #66411f;
 }
 
 .contact-card h2 {

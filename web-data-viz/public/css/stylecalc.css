@@ -24,8 +24,10 @@ label {
 }
 
 input {
+    margin: 5px;
     padding: 5px;
-    width: 60%;
+    width: 50%;
+    border-radius: 50px;
     box-sizing: border-box;
 }
 
@@ -39,7 +41,6 @@ input {
     width: 600px;
     height: 500px;
     border-radius: 50px;
-
     border: 3px solid #66411f;
 }
 

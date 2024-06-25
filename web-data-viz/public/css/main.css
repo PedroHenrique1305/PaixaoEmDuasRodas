@@ -105,7 +105,7 @@ body {
 
 .logo {
     width: 70px;
-    margin-right: 280px;
+    margin-right: 255px;
     margin-bottom: 15px;
     margin-left: 20px;
 }
@@ -183,7 +183,7 @@ button{
     text-align: justify;
     text-justify: inter-word;
 }
-#containerAssunto1{
+#containerDesafios{
     width: 100%;
     display: flex;
     align-items: center;
@@ -290,7 +290,7 @@ button{
 font-size: larger;
 }
 .h1Assunto4{
-    margin-top: 30px;
+    margin-top: 50px;
     color: #66411f;
 }
 
@@ -300,7 +300,7 @@ font-size: larger;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 1950px;
+    height: 1600px;
 }
 
 .Passunto4{
@@ -322,7 +322,7 @@ font-size: larger;
 
 #eletrica{
     display: flex; 
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     right: 15px;
@@ -335,17 +335,24 @@ font-size: larger;
     color: #66411f; 
     /* font-size: x-large; */
 }
+.comparar button{
+    width: 100px;
+    color: white;
+    background-color: #66411f;
+    font-size: 17px;
+    font-weight: bold;
+    border-color: grey;
+}
 .comparar{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 120px;
     font-size: x-small;
     border: 4px solid #66411fe8;
-    border-radius: 50%;
-    margin-right: 100px;
+    border-radius: 20px;
     background-color: #ffffff;
 }
 

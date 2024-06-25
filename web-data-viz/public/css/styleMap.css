@@ -1,8 +1,3 @@
-#map {
-    height: 80%;
-    width: 80%;
-
-}
 
 html,
 body {
@@ -12,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 90%;
+    height: 1175px;
     width: 100%;
 }
 
@@ -22,11 +17,14 @@ body {
     flex-direction: row;
     align-items: end;
     width: 100%;
-    height: 50px;
+    height: 65px;
     background: #66411fa2;
     backdrop-filter: blur(19.5px);
     justify-content: right;
     border-bottom: 1px solid white;
+    font-family: "Mukta", sans-serif;
+    font-size:small;
+
 }
 
 .borda {
@@ -115,4 +113,81 @@ body {
     margin-right: 250px;
     margin-bottom: 15px;
     margin-left: 20px;
+}
+
+   
+.carousel-container {
+    position: relative;
+    width: 45%;
+    margin: auto;
+    overflow: hidden;
+    border: 5px solid #492f17;
+    padding-bottom: 15px;
+    font-family: "Mukta", sans-serif;
+    font-size: smaller;
+
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 610px;
+    height: 430px;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+    border-top: 5px solid #492f17;
+    border-bottom: 5px solid #492f17;
+
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    transform: translateY(-50%);
+    margin-top: -22px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(129, 129, 129, 0.8);
+}
+
+.carousel-caption{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#map {
+    /* height: 400%; */
+    border: 5px solid #492f17;
+    height: 35%;
+    width: 75%;
+    margin-bottom: 40px;
+
 }

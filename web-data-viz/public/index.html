@@ -27,7 +27,7 @@
                 <a class="linkMenu" href="index.html">INICIO</a>
             </li>
             <li class="menuItem">
-                <a class="linkMenu" href="#containerAssunto1">DESAFIOS</a>
+                <a class="linkMenu" href="#containerDesafios">DESAFIOS</a>
             </li>
             <li class="menuItem">
                 <a class="linkMenu" href="#big">LAZER</a>
@@ -39,10 +39,13 @@
                 <a class="linkMenu" href="#containerAssunto4">ONU</a>
             </li>
             <li class="menuItem">
-                <a class="linkMenu" href="#contSobre">SOBRE NÓS</a>
+                <a class="linkMenu" href="calculadora.html">MARCAS</a>
             </li>
             <li class="menuItem">
                 <a class="linkMenu" href="calculadora.html">COMPARE</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="#contSobre">SOBRE&nbsp;NÓS</a>
             </li>
             <li class="menuItem">
                 <a class="linkMenu" href="#contato">CONTATO</a>
@@ -55,7 +58,7 @@
     <div class="container">
         <img src="img/imagemhomepage.png" alt="" width="1046px">
     </div>
-    <div id="containerAssunto1">
+    <div id="containerDesafios">
         <h1 class="h1Assunto1">Desafio em duas rodas</h1>
         <div class="Passunto1">
             <p class="um">
@@ -206,65 +209,10 @@
         <br>
         <br>
         <div id="eletrica">
-            <div class="comparar" align="center">
-                <h2>Veja algumas localizações de postos de recarga de motocicletas Elétricas:</h2>
-                <a href="mapas.html"><button>mapas</button></a>
-            </div>
-            <div class="carousel-container">
-                <h3>Aqui estão alguns modelos Elétricos disponíveis à venda no Brasil</h3>
-                <div class="carousel">
-                    <div class="carousel-slide">
-                        <img src="img/eletrica.jpg" alt="Moto Elétrica EV1 Sport" title="Voltz EV1 Sport">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - Voltz EV1 Sport --- Preço inicial - R$15.890,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 75 km/h
-                            </center>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="img/eletrica2.jpg" alt="Moto Elétrica Voltz EVS" title="Voltz EVS">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - Voltz EVS --- Preço inicial - R$20.390,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 120 km/h
-                            </center>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="img/eletrica3.jpg" alt="Moto Elétrica GWS K14RS" title="GWS K14RS">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - GWS K14RS --- Preço inicial - R$130.000,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 14.000W --- Velocidade máxima - 170 km/h
-                            </center>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="img/eletrica5.jpg" alt="Moto Elétrica LL E-Odin 2.0" title="LL E-Odin 2.0">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - LL E-Odin 2.0 --- Preço inicial - R$28.000,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 6.000W --- Velocidade máxima - 110 km/h
-                            </center>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="img/eletrica6.jpg" alt="Moto Elétrica" title="Shineray SHE-S">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - Shineray SHE-S --- Preço inicial - R$19.290,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 90 km/h
-                            </center>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="img/eletrica4.jpg" alt="Moto Elétrica GWS K4000RP" title="GWS K4000RP">
-                        <div class="carousel-caption">
-                            <center>&nbsp;&nbsp;Modelo - GWS K4000RP -- Preço inicial - R$20.090,00
-                                <br> &nbsp;&nbsp;Potência do Motor - 3.000W -- Velocidade máxima - 75 km/h
-                            </center>
-                        </div>
-                    </div>
-                </div>
-                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-                <button class="next" onclick="moveSlide(1)">&#10095;</button>
-            </div>
+        <div class="comparar">
+            <h2 align="center">Clique para ter mais informações sobre as Locomoção Elétrica</h2>
+            <a href="saibaMais.html"><button>Saber Mais</button></a>
+        </div>
         </div>
     </div>
 
@@ -362,24 +310,6 @@
 </html>
 
 <script>
-    var currentSlide = 0;
-    function moveSlide(n) {
-        var slides = document.querySelectorAll('.carousel-slide');
-        var totalSlides = slides.length;
-
-        currentSlide += n;
-
-        if (currentSlide >= totalSlides) {
-            currentSlide = 0;
-        } else if (currentSlide < 0) {
-            currentSlide = totalSlides - 1;
-        }
-
-        var carousel = document.querySelector('.carousel');
-        carousel.style.transform = 'translateX(' + (-610 * currentSlide) + 'px)';
-    }
-
-
     function enviar() {
         var nome = inpNome.value;
         var email = inpEmail.value; 
@@ -410,6 +340,7 @@
     
             alert("Mensagem enviada com sucesso! \n Agradecemos pela contribuição! S2");
             }
+            window.location = "http://localhost:3335/index.html?#contato";
         
         }
         </script>

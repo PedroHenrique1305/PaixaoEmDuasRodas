@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mapa de Recarga | Paixão em duas Rodas</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/styleMap.css">
+    <link rel="icon" href="..\img\logo1.ico" type="image/x-icon" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+    <div class="menu">
+        <div id="imagem">
+            <a href="index.html"><img class="logo" src="img/logo.png" alt=""></a>
+        </div>
+        <div class="borda">
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html">INICIO</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerDesafios">DESAFIOS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#big">LAZER</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto3">PROBLEMAS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto4">ONU</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="calculadora.html">MARCAS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="calculadora.html">COMPARE</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#contSobre">SOBRE NÓS</a>
+            </li>
+            
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#rodape">CONTATO</a>
+            </li>
+        </div>
+        <a class="linkMenu1" href="cadastro.html">CADASTRAR</a>
+        <h1 class="barra"> | </h1>
+        <a class="linkMenu2" href="login.html">LOGIN</a>
+    </div>
+
+    <div class="carousel-container">
+        <h3>Aqui estão alguns modelos Elétricos disponíveis à venda no Brasil</h3>
+        <div class="carousel">
+            <div class="carousel-slide">
+                <img src="img/eletrica.jpg" alt="Moto Elétrica EV1 Sport" title="Voltz EV1 Sport">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - Voltz EV1 Sport --- Preço inicial - R$15.890,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 75 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica2.jpg" alt="Moto Elétrica Voltz EVS" title="Voltz EVS">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - Voltz EVS --- Preço inicial - R$20.390,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 120 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica7.png" alt="Moto Elétrica GWS K4000RP" title="GWS K4000RP">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - SUPER SOCO TC MAX -- Preço inicial - R$34.950,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 5.000W -- Velocidade máxima - 110 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica3.jpg" alt="Moto Elétrica GWS K14RS" title="GWS K14RS">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - GWS K14RS --- Preço inicial - R$130.000,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 14.000W --- Velocidade máxima - 170 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica5.jpg" alt="Moto Elétrica LL E-Odin 2.0" title="LL E-Odin 2.0">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - LL E-Odin 2.0 --- Preço inicial - R$28.000,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 6.000W --- Velocidade máxima - 110 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica6.jpg" alt="Moto Elétrica" title="Shineray SHE-S">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - Shineray SHE-S --- Preço inicial - R$19.290,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 3.000W --- Velocidade máxima - 90 km/h
+                    </center>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="img/eletrica4.jpg" alt="Moto Elétrica GWS K4000RP" title="GWS K4000RP">
+                <div class="carousel-caption">
+                    <center>&nbsp;&nbsp;Modelo - GWS K4000RP -- Preço inicial - R$20.090,00
+                        <br> &nbsp;&nbsp;Potência do Motor - 3.000W -- Velocidade máxima - 75 km/h
+                    </center>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+
+    <h1>Localizações de Postos de Recarga</h1>
+    <div id="map"></div>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+
+        var currentSlide = 0;
+        function moveSlide(n) {
+            var slides = document.querySelectorAll('.carousel-slide');
+            var totalSlides = slides.length;
+
+            currentSlide += n;
+
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+
+            var carousel = document.querySelector('.carousel');
+            carousel.style.transform = 'translateX(' + (-610 * currentSlide) + 'px)';
+        }
+    </script>
+
+    <script>
+        // Inicialize o mapa e defina sua visualização para um local e zoom específicos
+        var map = L.map('map').setView([-23.55052, -46.633308], 12);
+
+        // Adicione uma camada de mapa do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var greenIcon = L.icon({
+            iconUrl: 'https://example.com/green-marker.png', // URL da imagem do ícone
+            iconSize: [15, 35], // tamanho do ícone
+            iconAnchor: [12, 41], // ponto do ícone que corresponderá à posição do marcador
+            popupAnchor: [1, -34], // ponto de onde o popup deve abrir em relação ao ícone
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            shadowSize: [41, 41] // tamanho da sombra
+        });
+
+        var postos = [
+            { lat: -23.5723, lng: -46.6967, name: "Shopping Eldorado", info: "Av. Rebouças, 3970 - Pinheiros, São Paulo - SP, 05402-600" },
+            { lat: -23.5763, lng: -46.6839, name: "Shopping Iguatemi", info: "Av. Brigadeiro Faria Lima, 2232 - Jardim Paulistano, São Paulo - SP, 01489-900" },
+            { lat: -23.5955, lng: -46.6847, name: "Shopping Vila Olímpia", info: "R. Olimpíadas, 360 - Vila Olímpia, São Paulo - SP, 04551-000" },
+            { lat: -23.6248, lng: -46.6996, name: "Shopping Morumbi", info: "Av. Roque Petroni Júnior, 1089 - Jardim das Acacias, São Paulo - SP, 04707-900" },
+            { lat: -23.5687, lng: -46.6470, name: "Shopping Pátio Paulista", info: "Rua Treze de Maio, 1947 - Bela Vista, São Paulo - SP, 01327-001" },
+            { lat: -23.6252, lng: -46.6983, name: "Shopping Market Place", info: "Av. Dr. Chucri Zaidan, 902 - Vila Cordeiro, São Paulo - SP, 04583-110" },
+            { lat: -23.6464, lng: -46.7007, name: "Senac Santo Amaro", info: "Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000" },
+            { lat: -23.5475, lng: -46.6525, name: "Universidade Presbiteriana Mackenzie", info: "Rua da Consolação, 930 - Consolação, São Paulo - SP, 01302-907" },
+            { lat: -23.5174, lng: -46.6236, name: "Shopping Center Norte", info: "Travessa Casalbuono, 120 - Vila Guilherme, São Paulo - SP, 02047-050" },
+            { lat: -23.6104, lng: -46.6669, name: "Shopping Ibirapuera", info: "Av. Ibirapuera, 3103 - Moema, São Paulo - SP, 04029-902" },
+            { lat: -23.5631, lng: -46.5593, name: "Shopping Anália Franco", info: "Av. Regente Feijó, 1739 - Tatuapé, São Paulo - SP, 03342-000" },
+            { lat: -23.5640, lng: -46.6529, name: "Shopping Cidade São Paulo", info: "Av. Paulista, 1230 - Bela Vista, São Paulo - SP, 01310-100" },
+            { lat: -23.5997, lng: -46.6381, name: "Shopping Metrô Santa Cruz", info: "Rua Domingos de Morais, 2564 - Vila Mariana, São Paulo - SP, 04036-100" },
+            { lat: -23.5401, lng: -46.5764, name: "Shopping Metrô Tatuapé", info: "Rua Melo Freire, s/n - Tatuapé, São Paulo - SP, 03067-000" },
+            { lat: -23.5275, lng: -46.6783, name: "Shopping West Plaza", info: "Av. Francisco Matarazzo, s/n - Água Branca, São Paulo - SP, 05001-100" },
+            { lat: -23.5488, lng: -46.6374, name: "Shopping Light", info: "Rua Coronel Xavier de Toledo, 23 - Centro, São Paulo - SP, 01048-100" },
+            { lat: -23.5467, lng: -46.6543, name: "Shopping Pátio Higienópolis", info: "Av. Higienópolis, 618 - Higienópolis, São Paulo - SP, 01238-000" },
+            { lat: -23.5544, lng: -46.6521, name: "Shopping Frei Caneca", info: "Rua Frei Caneca, 569 - Consolação, São Paulo - SP, 01307-001" },
+            { lat: -23.6269, lng: -46.7357, name: "Shopping Jardim Sul", info: "Av. Giovanni Gronchi, 5819 - Vila Andrade, São Paulo - SP, 05724-003" },
+            { lat: -23.6272, lng: -46.7528, name: "Shopping Taboão", info: "Rod. Régis Bittencourt, 2643 - Taboão da Serra, São Paulo - SP, 06768-200" },
+            { lat: -23.6074, lng: -46.8407, name: "Shopping Granja Vianna", info: "Rod. Raposo Tavares, Km 23 - Jardim da Glória, Cotia - SP, 06709-015" },
+            { lat: -23.5293, lng: -46.5342, name: "Shopping Penha", info: "Rua Dr. João Ribeiro, 304 - Penha de França, São Paulo - SP, 03623-000" },
+            { lat: -23.6265, lng: -46.7189, name: "Shopping Morumbi Town", info: "Av. Giovanni Gronchi, 5930 - Vila Andrade, São Paulo - SP, 05724-002" },
+            { lat: -23.5179, lng: -46.6234, name: "Shopping Lar Center", info: "Av. Otto Baumgart, 500 - Vila Guilherme, São Paulo - SP, 02049-000" },
+            { lat: -23.5264, lng: -46.6231, name: "Shopping D", info: "Av. Cruzeiro do Sul, 1100 - Canindé, São Paulo - SP, 03033-020" },
+            { lat: -23.6290, lng: -46.6306, name: "Shopping Plaza Sul", info: "Praça Leonor Kauppa, 100 - Saúde, São Paulo - SP, 04320-070" },
+            { lat: -23.5392, lng: -46.4756, name: "Shopping Metro Itaquera", info: "Av. José Pinheiro Borges, s/n - Itaquera, São Paulo - SP, 08220-900" },
+            { lat: -23.5270, lng: -46.6781, name: "Shopping Bourbon", info: "Rua Palestra Itália, 500 - Pompeia, São Paulo - SP, 05005-001" },
+            { lat: -23.6815, lng: -46.6912, name: "Shopping SP Market", info: "Av. das Nações Unidas, 22540 - Jurubatuba, São Paulo - SP, 04795-100" },
+            { lat: -23.5505, lng: -46.6333, name: "Estação da Luz", info: "Praça da Luz, 1 - Luz, São Paulo - SP, 01120-010" },
+            { lat: -23.5489, lng: -46.6388, name: "Praça da Sé", info: "Praça da Sé - Sé, São Paulo - SP, 01001-000" },
+            { lat: -23.5617, lng: -46.6550, name: "Museu de Arte de São Paulo (MASP)", info: "Av. Paulista, 1578 - Bela Vista, São Paulo - SP, 01310-200" },
+            { lat: -23.5933, lng: -46.6571, name: "Parque Ibirapuera", info: "Av. Pedro Álvares Cabral - Vila Mariana, São Paulo - SP, 04094-050" },
+            { lat: -23.5565, lng: -46.6625, name: "Estádio do Pacaembu", info: "Praça Charles Miller - Pacaembu, São Paulo - SP, 01234-010" },
+            { lat: -23.6044, lng: -46.6739, name: "Aeroporto de Congonhas", info: "Av. Washington Luís, s/n - Vila Congonhas, São Paulo - SP, 04626-911" },
+            { lat: -23.4325, lng: -46.4734, name: "Aeroporto de Guarulhos", info: "Rod. Hélio Smidt, s/n - Cumbica, Guarulhos - SP, 07190-100" },
+            { lat: -23.5604, lng: -46.7043, name: "Eletroposto Posto Ipiranga", info: "Rua Dr. Rafael de Barros, 356 - Vila Olímpia, São Paulo - SP, 04571-000" },
+            { lat: -23.5442, lng: -46.6821, name: "Eletroposto ZEM", info: "Rua Haddock Lobo, 165 - Cerqueira César, São Paulo - SP, 01424-002" },
+            { lat: -23.5391, lng: -46.6754, name: "Eletroposto WQi", info: "Rua Dr. Vieira de Carvalho, 107 - Vila Madalena, São Paulo - SP, 01419-000" },
+            { lat: -23.6222, lng: -46.7307, name: "Eletroposto Extra Bom Preço", info: "Avenida Marechal Teodoro, 800 - Vila Matilde, São Paulo - SP, 03372-000" },
+            { lat: -23.6011, lng: -46.7101, name: "Eletroposto Carrefour", info: "Avenida Antônio Carlos Perez Gonzales, 85 - Tatuapé, São Paulo - SP, 03310-000" },
+            { lat: -23.5547, lng: -46.7575, name: "Eletroposto Pão de Açúcar", info: "Rua Dr. Dante Pazzanese, 500 - Itaim Bibi, São Paulo - SP, 01405-000" },
+            { lat: -23.5492, lng: -46.7349, name: "Eletroposto St Marche", info: "Rua Dr. Frederico Wolf, 333 - Vila Madalena, São Paulo - SP, 01419-000" },
+            { lat: -23.5313, lng: -46.7412, name: "Eletroposto ParkShopping Tatuapé", info: "Rua Dr. Luís Migliano, 1110 - Tatuapé, São Paulo - SP, 03310-000" },
+            { lat: -23.5141, lng: -46.7681, name: "Eletroposto Iguatemi", info: "Avenida Presidente Juscelino Kubitschek, 2041 - Vila Olímpia, São Paulo - SP, 04571-000" },
+            { lat: -23.7222, lng: -46.8534, name: "Eletroposto Estação de Carregamento", info: "Avenida dos Bandeirantes, 7445 - Morumbi, São Paulo - SP, 04565-000" },
+            { lat: -23.5432, lng: -46.4897, name: "Eletroposto Assaí Atacadista", info: "Avenida do Anastácio, 7000 - Jardim Anália Franco, São Paulo - SP, 05435-000" },
+            { lat: -23.5522, lng: -46.4978, name: "Eletroposto São Paulo Corporate Towers", info: "Avenida Nações Unidas, 12901 - Jardim Paulista, São Paulo - SP, 04579-000" },
+            {lat: -23.675111,lng: -46.565278,name: "Estação de carregamento para veículos elétricos (km 29)", info: "Rodovia dos Imigrantes, Km 29 - Jardim Santa Isabel, CEP: 09843-901 - São Bernardo do Campo - SP"},
+            {lat: -23.689722,lng: -46.594444,name: "Estação de carregamento para veículos elétricos (Maranhão)",info:"Rua Maranhão, 975 - Vila Santa Helena, CEP: 09541-001 - São Caetano do Sul - SP"},
+            {lat: -23.671111,lng: -46.566667,name: "Estação de carregamento para veículos elétricos (Votuporanga)",info: "Rua Votuporanga, 111 - Vila Leopoldina, CEP: 09030-590 - Santo André - SP"},
+            {lat: -23.677500,lng: -46.545833,name: "E-VOLT BRAZIL Carregadores Inteligentes de Veículos Elétricos", info: "Rua José Versolato, 111 - Bloco B Sala 2006 - Centro, CEP: 09750-730 - São Bernardo do Campo - SP"},
+            {lat: -23.689167,lng: -46.578333,name: "Eletroposto Centro Automotivo Porto Seguro - Santo André", info:"Avenida Firestone, 1609 - Silveira, CEP: 09015-390 - Santo André - SP"},
+            {lat: -23.644960,lng: -46.431280,name: "Ribeirão Pires - OnCharge",info: "Avenida Presidente Kennedy, 393 - Centro, Ribeirão Pires - SP, 09400-000."},
+            {lat: -23.698111,lng: -46.527778,name: "Atacadão Santo André - Superchargers",info: "Avenida dos Estados, 7.777 - Campina Grande, Santo André - SP, 09011-000."},
+            {lat: -23.605278,lng: -46.414444,name: "Extra Santo André - Superchargers",info: "Avenida Lino Guerreiro, 1.501 - Vila Humaitá, Santo André - SP, 09000-000."},
+            {lat: -23.691667,lng: -46.410278,name: "ParkShopping São Bernardo - ZEM",info: "Avenida das Américas, 900 - Centro, São Bernardo do Campo"}
+        ];
+
+        postos.forEach(function (posto) {
+            var marker = L.marker([posto.lat, posto.lng]).addTo(map);
+            marker.bindPopup('<h3>' + posto.name + '</h3><p>' + posto.info + '</p>');
+        });
+
+    </script>
+</body>
+
+</html>

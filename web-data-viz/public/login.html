@@ -16,9 +16,11 @@
 
 <body>
 
+    <a href="index.html">
     <div class="imagemLogin">
-        <img class="imgLogin" src="img/imagemLogin.svg">
-    </div>
+            <img class="imgLogin" src="img/imagemLogin.svg">
+        </div>
+    </a>
 
     <div class="formLogin">
         <div class="login">
@@ -32,10 +34,14 @@
         <div class="containerLogin">
             <div id="login">
                 <h2 class="tituloLogin">Login</h2>
-                <p class="loginP">E-mail</p><br>
+                <label>
+                    <p class="loginP">E-mail</p><br>
                 <input type="text" id="emailUsuario" required="@" placeholder="Informe seu e-mail"><br>
+                </label>
+                <label>
                 <p class="loginP">Senha</p><br>
                 <input type="password" id="primeira_senha" required="required" placeholder="Informe sua senha">
+                </label>
                 <br><br>
                 <p class="esqueceuASenha">Esqueceu sua senha? <a href="redefinir.html">Redefinir</a></p><br><br>
                 <button onclick="entrar()">Login</button>
@@ -108,10 +114,6 @@
                 console.log("Houve um erro ao tentar realizar o login!");
                 alert("Houve um erro ao tentar realizar o login! \n Tente se logar novamente.");
 
-                // resposta.text().then(texto => {
-                //     // console.error(texto);
-                //     finalizarAguardar(texto);
-                // });
             }
 
         }).catch(function (erro) {

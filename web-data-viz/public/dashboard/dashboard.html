@@ -97,11 +97,20 @@
             <img src="../img/logo.png" alt="" width="90" height="50">
         </div>
     </div>
-    <div class="recepcao" align="center">
-        <h1>Seja Bem-vindo  <span id="b_usuario2">Usuário</span></h1>
-        <br><br>
-        <h3>Aqui você terá acesso aos Questionários para respondê-los,</h3>
-        <h3>e acesso às suas porcentagens de respostas certas e erradas dos questionários</h3>
+    <div class="repStyle">
+        <div class="recepcao" align="center">
+            <h1>Seja Bem-vindo  <span id="b_usuario2">Usuário</span></h1>
+            <br><br>
+            <h3>Aqui você terá acesso aos Questionários para respondê-los,</h3>
+            <h3>e acesso às suas porcentagens de respostas certas e erradas dos questionários</h3>
+        </div>
+        <div class="space"></div>
+        
+        <div class="recepcao2" align="center">
+            <h3><span id="b_usuario3">Usuário</span> responda nossa pesquisa para sabermos o seu gosto!</h3>
+            <br>
+            <a href="formMarcas.html"><button>Preferências de Marca</button></a>
+        </div>
     </div>
     
 </body>
@@ -112,6 +121,7 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_usuario2.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario3.innerHTML = sessionStorage.NOME_USUARIO;
 
     
 </script>

@@ -17,9 +17,11 @@
   
   <body>
     <div id="paiCadastro">
-      <div class="imagemcadastro">
-        <img class="imgCadastro" src="img/imagemLogin.svg" alt="">
-      </div>
+      <a href="index.html">
+        <div class="imagemcadastro">
+          <img class="imgCadastro" src="img/imagemLogin.svg" alt="">
+        </div>
+      </a>
       <div class="login">
         <div class="alerta_erro">
           <div class="div_aguardar"></div>
@@ -31,15 +33,25 @@
             <div class="containercadastro">
                 <div id="cadastro">
                     <h2 class="tituloCadastro">Cadastre-se</h2>
+                    <label>
                     <p class="pCadastro">Nome</p><br>
                     <input type="text" id="nomeUsuario" required="required" placeholder="Informe o seu Nome">
+                    </label>
+                    <label>
                     <p class="pCadastro">E-mail</p><br>
                     <input type="text" id="emailUsuario" required="@" placeholder="Informe seu email">
+                    </label>                    
+                  
+                    <label>  
                     <p class="pCadastro">Senha</p><br>
                     <input type="password" id="primeira_senha" required="required" placeholder="Digite sua senha">
+                    </label>
+                  
+                    <label>  
                     <p class="pCadastro">Confirme a Senha</p><br>
-                    <input type="password" id="segunda_senha" required="required"
-                        placeholder="Digite sua senha novamente">
+                    <input type="password" id="segunda_senha" required="required" placeholder="Digite sua senha novamente">
+                    </label>
+
                     <br><br>
                     <button onclick="cadastrar()">Cadastrar</button><br><br><br>
                     

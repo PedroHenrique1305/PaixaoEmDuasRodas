@@ -276,3 +276,36 @@
      background-color: #5a5a5ada;
      border: 4.5px solid #66411f;
  }
+
+ .recepcao2 {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #5a5a5ada;
+    border: 4.5px solid #66411f;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.recepcao2 button{
+    color:#5a5a5ada;
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 50px;
+    width: 200px;
+    height: 33px;
+
+}
+
+.space{
+    height: 220px;
+}
+
+.repStyle{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}

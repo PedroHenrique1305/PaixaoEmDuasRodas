@@ -94,12 +94,15 @@
         </div>
     </div>
     <div class="body">
-        <h1>Respostas Questionário 1</h1>
+        <br><br>
+        <h1>Percentual das suas Respostas</h1>
+        <br><br>
+        <h1>Questionário 1</h1>
         <div class="canva-container">
             <canvas id="myChart1"></canvas>
         </div>
         
-        <h1>Respostas Questionário 2</h1>
+        <h1>Questionário 2</h1>
         <div class="canva-container">
             <canvas id="myChart2"></canvas>            
         </div>
@@ -250,7 +253,7 @@
     chart1 = new Chart(ctx, {
         type: 'polarArea',
         data: {
-            labels: ['Respostas Corretas Q1', 'Respostas Erradas Q1'],
+            labels: ['Respostas Corretas', 'Respostas Erradas'],
             datasets: [{
                 label: 'Porcentagens de respostas do Questionário 1',
                 data: [RespostasQ1, RespostasQ3],
@@ -288,7 +291,7 @@ function atualizarGrafico2() {
     chart2 = new Chart(ctx2, {
         type: 'polarArea',
         data: {
-            labels: ['Respostas Erradas Q2', 'Respostas Corretas Q2'],
+            labels: ['Respostas Erradas', 'Respostas Corretas'],
             datasets: [{
                 label: 'Porcentagens de respostas do Questionário 2',
                 data: [RespostasQ4, RespostasQ2],

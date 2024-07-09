@@ -49,13 +49,43 @@ h1{
 
 #alerta{
     position: absolute;
-    margin-top: -550px;
-    margin-right: 1050px;
+    margin-top: -460px;
+    margin-right: 990px;
     padding: 20px;
     color: #fff;
+    background-color: #66411f;
     border: 5px solid #fff;
     border-radius: 50px;
-    font-size: large;
+    font-size: smaller;
     font-weight: bold;
-    background-color: transparent;
+}
+
+#alerta2{
+    position: absolute;
+    margin-top: -460px;
+    margin-right: 990px;
+    padding: 20px;
+    color: #fff;
+    background-color: #66411f;
+    border: 5px solid #fff;
+    border-radius: 50px;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.form-check-input[type="checkbox"]:hover {
+    background-color: #a3815a;
+    border-color: #a3815a;
+}
+
+/* Ensure the switch handle is visible on hover */
+.form-check-input[type="checkbox"]:checked::before {
+    background-color: #66411f;
+    color: #66411f;
+}
+
+.form-check-input:checked {
+    background-color: #66411f;
+    border-color: #66411f;
+    color:#fff;
 }

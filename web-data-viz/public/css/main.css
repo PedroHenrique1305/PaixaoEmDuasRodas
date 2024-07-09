@@ -32,6 +32,7 @@ body {
     margin-bottom: 19px;
     align-items: center;
     height: 30px;
+    padding: 1.5px;
 }
 
 .menuItem {
@@ -105,9 +106,9 @@ body {
 
 .logo {
     width: 70px;
-    margin-right: 255px;
+    margin-right: 225px;
     margin-bottom: 15px;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .titulo {

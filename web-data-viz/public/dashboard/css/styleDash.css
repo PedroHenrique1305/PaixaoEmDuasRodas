@@ -283,7 +283,6 @@
     background-color: #5a5a5ada;
     border: 4.5px solid #66411f;
     display: flex;
-
     flex-direction: column;
     align-items: center;
 }
@@ -294,13 +293,13 @@
     font-weight: bold;
     font-size: medium;
     border-radius: 50px;
-    width: 200px;
+    width: 150px;
     height: 33px;
 
 }
 
 .space{
-    height: 220px;
+    height: 250px;
 }
 
 .repStyle{

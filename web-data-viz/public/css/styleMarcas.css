@@ -1,75 +1,9 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: "Mukta", sans-serif;
-}
-
-h2,
-h3 {
-    color: #66411f;
-}
 
 body {
-    background: #f1f1f1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input {
-    margin: 5px;
-    padding: 5px;
-    width: 50%;
-    border-radius: 50px;
-    box-sizing: border-box;
-}
-
-#form {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    width: 600px;
-    height: 500px;
-    border-radius: 50px;
-    border: 5px solid #66411f;
-}
-
-#results {
-    padding: 40px;
-    width: 400px;
-    height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 3px solid #66411f;
-    border-radius: 50px;
-    color: black;
-    margin: 0px 80px 80px 80px;
-}
-
-button {
-    padding: 10px 15px;
+    font-family: "Mukta", sans-serif;
     background-color: #66411f;
-    border-radius: 20px;
-    border-color: #462d16;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ffffffdc;
-    font-weight: bold;
-    color: #66411f;
+    margin: 0;
+    padding: 0;
 }
 
 .menu {
@@ -82,20 +16,24 @@ button:hover {
     backdrop-filter: blur(19.5px);
     justify-content: right;
     border-bottom: 1px solid white;
+    font-family: "Mukta", sans-serif;
 }
 
 .borda {
     display: flex;
-    margin-right: 160px;
+    margin-right: 120px;
+    margin-left: 120px;
     border: 1px solid #ffffff;
-    border-radius: 15px 15px 15px 15px;
+    padding: 2px;
+    border-radius: 15px;
     justify-content: space-around;
-    width: 1200px;
+    width: 650px;
     margin-bottom: 19px;
     align-items: center;
     height: 30px;
-    padding: 1.5px;
+    font-family: "Mukta", sans-serif;
 }
+
 
 .menuItem {
     text-decoration: none;
@@ -109,8 +47,10 @@ button:hover {
     list-style: none;
     margin-right: 10px;
     margin-bottom: 23px;
+    font-size: 14.4px;
     color: aliceblue;
     transition: 400ms;
+    font-family: sans-serif;
 }
 
 .linkMenu:hover {
@@ -125,8 +65,9 @@ button:hover {
 .linkMenu1 {
     text-decoration: none;
     list-style: none;
+    font-size: 14.4px;
     margin-right: 10px;
-    margin-bottom: 23px;
+    margin-bottom: 27px;
     color: aliceblue;
     transition: 400ms;
 }
@@ -136,7 +77,7 @@ button:hover {
     font-size: 15px;
     border-radius: 10px 10px 10px 10px;
     width: 110px;
-    margin-right: 30px;
+    margin-right: 10px;
     height: 20px;
     color: #66411f;
 }
@@ -145,7 +86,8 @@ button:hover {
     text-decoration: none;
     list-style: none;
     margin-right: 25px;
-    margin-bottom: 23px;
+    font-size: 14.4px;
+    margin-bottom: 27px;
     color: aliceblue;
     transition: 400ms;
 }
@@ -162,13 +104,42 @@ button:hover {
 
 .barra {
     color: #eeeeee;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     margin-right: 10px;
 }
 
 .logo {
     width: 70px;
-    margin-right: 225px;
-    margin-bottom: 15px;
+    margin-right: 113px;
+    margin-bottom: 11px;
     margin-left: 30px;
 }
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#ranking-container{
+    width: 550px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section1 {  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

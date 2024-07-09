@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paixão em duas Rodas | Pesquisa Motocicletas</title>
+    <link rel="stylesheet" href="css/styleMarcas.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="menu">
+        <div id="imagem">
+            <a href="index.html"><img class="logo" src="img/logo.png" alt=""></a>
+        </div>
+        <div class="borda">
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html">INICIO</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerDesafios">DESAFIOS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#big">LAZER</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto3">PROBLEMAS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#containerAssunto4">ONU</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="marcas.html">MARCAS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="calculadora.html">COMPARE</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#contSobre">SOBRE&nbsp;NÓS</a>
+            </li>
+            <li class="menuItem">
+                <a class="linkMenu" href="index.html#contato">CONTATO</a>
+            </li>
+        </div>
+        <a class="linkMenu1" href="/cadastro.html">CADASTRAR</a>
+        <h1 class="barra"> | </h1>
+        <a class="linkMenu2" href="/login.html">LOGIN</a>
+    </div>
+
+    <div class="container">
+        <h1>Pesquisa - Interesses em Marcas de Motocicleta</h1>
+
+        <div class="section1">
+            <h2>Top 3 - Interesses em Marcas</h2>
+            <div id="ranking-container">
+                <canvas id="ranking-grafico"></canvas>
+            </div>
+        </div>
+
+        <div class="section">
+            <center><u>
+                    <h2>Interesses em Marcas</h2>
+                </u>
+                <div id="grafico-container" style="width: 65%;">
+                    <canvas id="grafico"></canvas>
+                </div>
+            </center>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let rankingChart = null;
+            let chart = null;
+
+            function buscarRanking() {
+                fetch('/pesquisa/buscarRanking')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao buscar ranking');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Dados do ranking:', data);
+
+                        data.sort((a, b) => b.escolhas - a.escolhas);
+
+                        const top3 = [data[1], data[0], data[2]];
+
+                        if (rankingChart) {
+                            rankingChart.destroy();
+                        }
+
+                        const ctx = document.getElementById('ranking-grafico').getContext('2d');
+                        rankingChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: top3.map(item => item.marca),
+                                datasets: [{
+                                    label: 'TOP 3',
+                                    data: top3.map(item => item.escolhas),
+                                    backgroundColor: [
+                                        'silver',
+                                        'gold',
+                                        '#88540b'
+                                    ],
+                                    borderColor: 'black',
+                                    borderWidth: 2.5
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar ranking:', error);
+                        alert('Erro ao buscar ranking. Verifique o console para mais detalhes.');
+                    });
+            }
+
+            function buscarDadosGrafico() {
+                fetch('/pesquisa/buscarDadosGrafico')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao buscar dados para gráfico');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Dados para gráfico:', data);
+
+                        if (chart) {
+                            chart.destroy();
+                        }
+
+                        const ctx = document.getElementById('grafico').getContext('2d');
+                        chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Suzuki', 'Harley-Davidson', 'Kawasaki', 'Honda',  'Dafra', 'Yamaha','Shineray', 'KTM', 'BMW', 'Triumph', 'Ducati', 'Elétricas'],
+                                datasets: [{
+                                    label: 'Quantidade de interesses',
+                                    data: [
+                                        data[0].suzuki, data[0].harley, data[0].kawasaki, data[0].honda, data[0].dafra, data[0].yamaha,
+                                         data[0].shineray, data[0].ktm, data[0].bmw, data[0].triumph,
+                                        data[0].ducati, data[0].eletricas
+                                    ],
+                                    backgroundColor: [
+                                        'Yellow',
+                                        'OrangeRed',
+                                        'LimeGreen',
+                                        'Red',
+                                        'orange',
+                                        'Gray',
+                                        'RoyalBlue',
+                                        'DarkOrange',
+                                        'SkyBlue',
+                                        'rgb(54,54,54)',
+                                        'DarkRed',
+                                        'MediumSeaGreen'
+                                    ],
+                                    borderColor: [
+                                        'black'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erro na requisição:', error);
+                        alert('Erro ao buscar dados para gráfico. Verifique o console para mais detalhes.');
+                    });
+            }
+
+            buscarRanking();
+            buscarDadosGrafico();
+
+            setInterval(() => {
+                buscarRanking();
+                buscarDadosGrafico();
+            }, 20000);
+        });
+    </script>
+</body>
+
+</html>
+
